@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase';
 
 const pocketbaseClient = new PocketBase(
-  process.env.POCKETBASE_URL || 'http://127.0.0.1:8090'
+  process.env.POCKETBASE_URL || 'https://fashionable-api.onrender.com'
 );
 
 export default pocketbaseClient;

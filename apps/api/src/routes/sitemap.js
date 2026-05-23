@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
 
     // Dynamically fetch products from PocketBase (source of truth)
     try {
-      const pbUrl = process.env.POCKETBASE_URL || 'http://127.0.0.1:8090';
+      const pbUrl = process.env.POCKETBASE_URL || 'https://fashionable-api.onrender.com';
       const response = await fetch(`${pbUrl}/api/collections/products/records?perPage=500`);
       
       if (response.ok) {
