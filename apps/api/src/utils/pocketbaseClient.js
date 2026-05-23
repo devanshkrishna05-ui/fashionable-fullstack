@@ -1,12 +1,7 @@
-import dotenv from 'dotenv';
-dotenv.config();
-import Pocketbase from 'pocketbase';
+import PocketBase from 'pocketbase';
 
-const pocketbaseClient = new Pocketbase('http://localhost:8090');
-
-await pocketbaseClient.collection('_superusers').authWithPassword(
-    process.env.PB_SUPERUSER_EMAIL,
-    process.env.PB_SUPERUSER_PASSWORD,
+const pocketbaseClient = new PocketBase(
+  process.env.POCKETBASE_URL || 'http://127.0.0.1:8090'
 );
 
 export default pocketbaseClient;
