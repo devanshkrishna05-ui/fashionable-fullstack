@@ -16,10 +16,12 @@ app.use('/sitemap.xml', sitemapRouter);
 app.use('/api', routes);
 app.use('/', routes);
 
-const port = process.env.PORT || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+const port = process.env.PORT || 10000;
+
+const server = app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
 });
+
 server.on('error', console.error);
 
 export default app;
