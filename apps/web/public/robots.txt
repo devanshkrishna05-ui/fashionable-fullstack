@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://getfashionable.shop/sitemap.xml
