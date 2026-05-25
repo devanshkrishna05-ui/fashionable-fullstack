@@ -1,40 +1,5 @@
-/// <reference path="../pb_data/types.d.ts" />
-migrate((app) => {
-  const collection = app.findCollectionByNameOrId("pbc_1202116644")
-
-  // add field
-  collection.fields.addAt(4, new Field({
-    "exceptDomains": null,
-    "hidden": false,
-    "id": "email3885137012",
-    "name": "email",
-    "onlyDomains": null,
-    "presentable": false,
-    "required": false,
-    "system": false,
-    "type": "email"
-  }))
-
-  // add field
-  collection.fields.addAt(5, new Field({
-    "hidden": false,
-    "id": "bool2323052248",
-    "name": "isActive",
-    "presentable": false,
-    "required": false,
-    "system": false,
-    "type": "bool"
-  }))
-
-  return app.save(collection)
-}, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_1202116644")
-
-  // remove field
-  collection.fields.removeById("email3885137012")
-
-  // remove field
-  collection.fields.removeById("bool2323052248")
-
-  return app.save(collection)
+migrate((db) => {
+  // disabled broken migration
+}, (db) => {
+  // rollback
 })
