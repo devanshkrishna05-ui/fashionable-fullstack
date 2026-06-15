@@ -290,15 +290,6 @@ const featuredProducts = useMemo(() => {
             <p className="text-gray-400 text-lg mb-8">
               Join thousands of savvy shoppers who use Fashionable to find the best deals on trending products
             </p>
-            <Link to="/trending">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-[#00D9FF] to-[#FF006E] text-white font-bold px-10 py-5 rounded-xl text-lg hover:shadow-[0_0_30px_rgba(0,217,255,0.5)] transition-all duration-300"
-              >
-                Start Saving Now
-              </motion.button>
-            </Link>
           </motion.div>
         </div>
       </section>

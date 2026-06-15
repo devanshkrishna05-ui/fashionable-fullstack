@@ -139,13 +139,6 @@ const handleMobileLogout = useCallback(() => {
               )}
             </div>
 
-            <button
-              onClick={handleDarkModeToggle}
-              className="p-2 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#00D9FF] transition-all duration-300 hover:shadow-[0_0_10px_rgba(0,217,255,0.3)]"
-              aria-label="Toggle dark mode"
-            >
-             <Moon className="w-5 h-5 text-[#00D9FF]" />
-            </button>
 
             {/* Mobile menu button */}
             <button

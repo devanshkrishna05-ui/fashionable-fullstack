@@ -4,9 +4,10 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
-import { LogIn, Mail, Lock } from 'lucide-react';
+import { Lock, Mail, LogIn, Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -82,7 +83,7 @@ if (!cleanEmail || !password) {
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
               <input
-  type="password"
+  type={showPassword ? "text" : "password"}
   name="password"
   autoComplete="current-password"
   required
@@ -91,6 +92,17 @@ if (!cleanEmail || !password) {
                 className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors"
                 placeholder="Password"
               />
+              <button
+  type="button"
+  onClick={() => setShowPassword(!showPassword)}
+  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#00D9FF] transition-colors"
+>
+  {showPassword ? (
+    <EyeOff className="w-5 h-5" />
+  ) : (
+    <Eye className="w-5 h-5" />
+  )}
+</button>
             </div>
           </div>
 
