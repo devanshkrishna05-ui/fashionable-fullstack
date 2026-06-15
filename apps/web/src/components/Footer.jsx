@@ -55,36 +55,24 @@ export default function Footer() {
            className="text-gray-400 hover:text-[#00D9FF] text-sm transition-colors duration-300"
           >
 
-         <div>
-         <span className="text-white font-semibold text-lg mb-4 block">
-          About Fashionable
-         </span>
+          Affiliate Disclosure
+          </Link>
 
-         <p className="text-gray-400 text-sm leading-relaxed">
-          Discover trending fashion and beauty products at the
-          best prices. Compare prices across multiple retailers
-          and never overpay again.
-         </p>
-         </div>
+          <Link
+           to="/about"
+           className="text-gray-400 hover:text-[#00D9FF] text-sm transition-colors duration-300"
+          >
+           About
+          </Link>
 
-      Affiliate Disclosure
-    </Link>
-
-    <Link
-      to="/about"
-      className="text-gray-400 hover:text-[#00D9FF] text-sm transition-colors duration-300"
-    >
-      About
-    </Link>
-
-    <Link
-      to="/faq"
-      className="text-gray-400 hover:text-[#00D9FF] text-sm transition-colors duration-300"
-    >
-      FAQ
-    </Link>
-  </div>
-</div>
+          <Link
+           to="/faq"
+           className="text-gray-400 hover:text-[#00D9FF] text-sm transition-colors duration-300"
+          >
+           FAQ
+          </Link>
+          </div>
+        </div> 
 
 
         {/* Bottom Bar */}
@@ -93,35 +81,48 @@ export default function Footer() {
             <p className="text-gray-500 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Fashionable. All rights reserved.
             </p>
-            <div className="flex gap-4">
-              <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
-                href="https://instagram.com/"
-                className="text-gray-400 hover:text-[#00D9FF] transition-colors"
-                aria-label="Instagram"
-              >
-              <motion.a
-               
-              whileHover={{ scale: 1.1, y: -2 }}
-              href="https://facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#00D9FF] transition-colors"
-              aria-label="Facebook"
-              >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M22 12.07C22 6.477 17.523 2 12 2S2 6.477 2 12.07c0 5.017 3.657 9.173 8.438 9.93v-7.03H7.898v-2.9h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.876h2.773l-.443 2.9h-2.33V22c4.78-.757 8.437-4.913 8.437-9.93z"/>
-              </svg>
-              </motion.a>
+           <div className="flex gap-6">
 
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-              </motion.a>
+  {/* Instagram */}
+  <motion.a
+    whileHover={{ scale: 1.1, y: -2 }}
+    href="https://instagram.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-pink-500 transition-colors"
+    aria-label="Instagram"
+  >
+    <svg
+      className="w-8 h-8"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm6-1a1 1 0 110 2 1 1 0 010-2zm-6 2.5A3.5 3.5 0 1015.5 12 3.5 3.5 0 0012 8.5z" />
+    </svg>
+  </motion.a>
+
+  {/* Facebook */}
+  <motion.a
+    whileHover={{ scale: 1.1, y: -2 }}
+    href="https://facebook.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-400 hover:text-[#00D9FF] transition-colors"
+    aria-label="Facebook"
+  >
+    <svg
+      className="w-8 h-8"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path d="M22 12.07C22 6.477 17.523 2 12 2S2 6.477 2 12.07c0 5.018 3.657 9.183 8.438 9.93v-7.03H7.898v-2.9h2.54V9.845c0-2.52 1.492-3.91 3.777-3.91 1.094 0 2.238.195 2.238.195v2.474h-1.26c-1.242 0-1.63.774-1.63 1.567v1.88h2.773l-.443 2.9h-2.33V22c4.78-.747 8.437-4.912 8.437-9.93z"/>
+    </svg>
+  </motion.a>
+
+</div>
             </div>
           </div>
         </div>
-      </div>
     </footer>
   );
 }
