@@ -33,7 +33,7 @@ export default function ContactPage() {
 
     toast({
       title: "🚧 Feature Coming Soon!",
-      description: "Contact form submission will be available soon. For now, please email us at contact@fashionable.com",
+      description: "Contact form submission will be available soon. For now, please email us at contact@fashionableviashop@gmail.com",
     });
 
     // Reset form
@@ -89,12 +89,12 @@ export default function ContactPage() {
                   <h2 className="text-white font-bold text-xl">Email Us</h2>
                 </div>
                 <p className="text-gray-400 mb-2">General Inquiries:</p>
-                <a href="mailto:contact@fashionable.com" className="text-[#00D9FF] hover:underline">
-                  contact@fashionable.com
+                <a href="mailto:contact@fashionableviashop@gmail.com" className="text-[#00D9FF] hover:underline">
+                  contact@fashionableviashop@gmail.com
                 </a>
                 <p className="text-gray-400 mt-4 mb-2">Support:</p>
-                <a href="mailto:support@fashionable.com" className="text-[#00D9FF] hover:underline">
-                  support@fashionable.com
+                <a href="mailto:support@fashionableviashop@gmail.com" className="text-[#00D9FF] hover:underline">
+                  support@fashionableviashop@gmail.com
                 </a>
               </div>
 
