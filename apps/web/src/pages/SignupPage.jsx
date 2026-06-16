@@ -5,8 +5,12 @@ import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { UserPlus, Mail, Lock } from 'lucide-react';
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 export default function SignupPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -89,9 +93,9 @@ if (!/[0-9]/.test(password)) {
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
               <input
-  type="email"
-  name="email"
-  autoComplete="email"
+              type="email"
+              name="email"
+              autoComplete="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -101,30 +105,40 @@ if (!/[0-9]/.test(password)) {
             </div>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-              <input
-  type="password"
-  name="password"
-  autoComplete="new-password"
-  required
-  minLength={8}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors"
-                placeholder="Password (min 8 chars)"
-              />
+             <div className="relative">
+  <input
+    type={showPassword ? "text" : "password"}
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className="w-full pr-12"
+  />
+
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+  >
+    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+  </button>
+</div>
             </div>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-              <input
-  type="password"
-  name="confirmPassword"
-  autoComplete="new-password"
-  required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors"
-                placeholder="Confirm Password"
-              />
+               <input
+    type={showConfirmPassword ? "text" : "password"}
+    value={confirmPassword}
+    onChange={(e) => setConfirmPassword(e.target.value)}
+    className="w-full pr-12"
+  />
+
+  <button
+    type="button"
+    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+  >
+    {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+  </button>
+
             </div>
           </div>
 
