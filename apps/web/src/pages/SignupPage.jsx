@@ -6,7 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { UserPlus, Mail, Lock } from 'lucide-react';
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
