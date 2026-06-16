@@ -19,19 +19,20 @@ export default function Footer() {
           {/* Brand Section */}
          <div>
          <motion.h2
-          whileHover={{ scale: 1.05 }}
-          className="text-2xl font-bold bg-gradient-to-r from-[#00D9FF] via-[#FF006E] to-[#00D9FF] bg-clip-text text-transparent mb-4"
-          style={{ fontFamily: "Orbitron, sans-serif" }}
+        whileHover={{ scale: 1.05 }}
+        className="text-2xl font-bold bg-gradient-to-r from-[#00D9FF] via-[#FF006E] to-[#00D9FF] bg-clip-text text-transparent mb-4"
+        style={{ fontFamily: "Orbitron, sans-serif" }}
          >
-          Fashionable
+         Fashionable
          </motion.h2>
          </div>
-          </div>
+         </div>
+
 
           {/* Quick Links */}
           <div>
             <span className="text-white font-semibold text-lg mb-4 block">Quick Links</span>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2">
               {footerLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -42,7 +43,7 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-          </div>
+          
 
           <div>
           <span className="text-white font-semibold text-lg mb-4 block">
@@ -54,7 +55,7 @@ export default function Footer() {
            to="/affiliate-disclosure"
            className="text-gray-400 hover:text-[#00D9FF] text-sm transition-colors duration-300"
           >
-
+ 
           Affiliate Disclosure
           </Link>
 
@@ -123,6 +124,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        </div>
     </footer>
+  
   );
 }
