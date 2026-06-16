@@ -3,19 +3,23 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
-  const footerLinks = [
-    { name: 'Privacy Policy', path: '/privacy' },
-    { name: 'Affiliate Disclosure', path: '/affiliate-disclosure' },
-    { name: 'Terms of Use', path: '/terms' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-    { name: 'FAQ', path: '/faq' },
-  ];
+ const quickLinks = [
+  { name: "Privacy Policy", path: "/privacy-policy" },
+  { name: "Terms of Use", path: "/terms" },
+  { name: "Contact", path: "/contact" },
+];
+
+const companyLinks = [
+  { name: "Affiliate Disclosure", path: "/affiliate-disclosure" },
+  { name: "About", path: "/about" },
+  { name: "FAQ", path: "/faq" },
+];
 
   return (
     <footer className="bg-[#0a0a0a] border-t border-[#2a2a2a] mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
           {/* Brand Section */}
          <div>
          <motion.h2
@@ -26,14 +30,12 @@ export default function Footer() {
          Fashionable
          </motion.h2>
          </div>
-         </div>
-
 
           {/* Quick Links */}
           <div>
             <span className="text-white font-semibold text-lg mb-4 block">Quick Links</span>
             <div className="grid grid-cols-1 gap-2">
-              {footerLinks.map((link) => (
+              {quickLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
@@ -74,7 +76,7 @@ export default function Footer() {
           </Link>
           </div>
         </div> 
-
+        </div> 
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#2a2a2a]">
