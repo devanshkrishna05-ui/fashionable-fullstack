@@ -5,7 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useToast } from '@/components/ui/use-toast';
 import pb from '@/lib/pocketbaseClient';
-import { mockProducts } from '@/data/mockProductData';
+import {fetchProductByIdFromPocketBase} from '@/lib/productApi';
 import { Bell, Mail, Settings, Trash2, Edit2, User } from 'lucide-react';
 import PriceAlertModal from '@/components/PriceAlertModal.jsx';
 import { formatINR } from '@/lib/priceFormatter';
@@ -18,6 +18,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [editingAlert, setEditingAlert] = useState(null);
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
+  const [productMap, setProductMap] = useState({});
 
   // Mock notification settings
   const [emailNotifs, setEmailNotifs] = useState(true);
@@ -74,9 +75,6 @@ export default function DashboardPage() {
     }
   };
 
-  const getProductDetails = (productId) => {
-    return mockProducts.find(p => p.id === productId) || { name: 'Unknown Product', image: '' };
-  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] py-12">
@@ -101,7 +99,9 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="text-white font-semibold">{currentUser?.email}</p>
-              <p className="text-xs text-gray-500">Member since {new Date(currentUser?.created).toLocaleDateString()}</p>
+              <p className="text-xs text-gray-500">Member since {currentUser?.created
+    ? new Date(currentUser.created).toLocaleDateString()
+    : 'N/A'}</p>
             </div>
           </div>
         </motion.div>
@@ -109,7 +109,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-6">
             <h3 className="text-gray-400 text-sm font-medium mb-2">Active Alerts</h3>
-            <p className="text-3xl font-bold text-[#00D9FF]">{alerts.filter(a => a.isActive).length}</p>
+            <p className="text-3xl font-bold text-[#00D9FF]">{alerts.filter(a => Boolean(a?.isActive)).length}</p>
           </div>
           <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-6">
             <h3 className="text-gray-400 text-sm font-medium mb-2">Waitlist Items</h3>
@@ -153,7 +153,14 @@ export default function DashboardPage() {
                     animate={{ opacity: 1 }}
                     className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 flex items-center gap-4 hover:border-[#00D9FF] transition-colors"
                   >
-                    <img src={product.image} alt={product.name} className="w-16 h-16 object-cover rounded-lg" />
+                    <img
+  src={product.image || '/images/product-fallback.webp'}
+  alt={product.name}
+  className="w-16 h-16 object-cover rounded-lg"
+  onError={(e) => {
+    e.currentTarget.src = '/images/product-fallback.webp';
+  }}
+/>
                     <div className="flex-grow">
                       <h3 className="text-white font-bold">{product.name}</h3>
                       <p className="text-sm text-gray-400">
@@ -203,7 +210,14 @@ export default function DashboardPage() {
                     animate={{ opacity: 1 }}
                     className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 flex items-center gap-4 hover:border-[#FF006E] transition-colors"
                   >
-                    <img src={product.image} alt={product.name} className="w-16 h-16 object-cover rounded-lg" />
+                   <img
+  src={product.image || '/images/product-fallback.webp'}
+  alt={product.name}
+  className="w-16 h-16 object-cover rounded-lg"
+  onError={(e) => {
+    e.currentTarget.src = '/images/product-fallback.webp';
+  }}
+/>
                     <div className="flex-grow">
                       <h3 className="text-white font-bold">{product.name}</h3>
                       <p className="text-sm text-gray-400">Notifying: {item.email}</p>
