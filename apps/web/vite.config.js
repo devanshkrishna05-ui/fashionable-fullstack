@@ -299,13 +299,6 @@ export default defineConfig({
       '@babel/generator',
       '@babel/types',
     ],
-    output: {
-      manualChunks: {
-        react: ['react', 'react-dom', 'react-router-dom'],
-        animation: ['framer-motion'],
-        ui: ['@radix-ui/react-dialog', '@radix-ui/react-toast'],
-      },
-    },
   },
 },
 });
