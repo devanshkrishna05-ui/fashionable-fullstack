@@ -41,6 +41,31 @@ export default function DashboardPage() {
         $autoCancel: false
       });
       setWaitlist(waitlistData);
+
+      // Fetch products for all alerts and waitlist items
+      const productIds = new Set([
+        ...alertsData.map(a => a.productId),
+        ...waitlistData.map(w => w.productId)
+      ]);
+
+      const newProductMap = {};
+      for (const productId of productIds) {
+        try {
+          const product = await fetchProductByIdFromPocketBase(productId);
+          if (product) {
+            newProductMap[productId] = product;
+          }
+        } catch (error) {
+          console.error(`Failed to fetch product ${productId}:`, error);
+          // Use fallback product object
+          newProductMap[productId] = {
+            id: productId,
+            name: 'Product',
+            image: '/images/product-fallback.webp'
+          };
+        }
+      }
+      setProductMap(newProductMap);
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
       toast({ title: "Error", description: "Failed to load dashboard data.", variant: "destructive" });
@@ -145,7 +170,7 @@ export default function DashboardPage() {
               </div>
             ) : (
               alerts.map((alert) => {
-                const product = getProductDetails(alert.productId);
+                const product = productMap[alert.productId] || { name: 'Product', image: '/images/product-fallback.webp' };
                 return (
                   <motion.div 
                     key={alert.id}
@@ -202,7 +227,7 @@ export default function DashboardPage() {
               </div>
             ) : (
               waitlist.map((item) => {
-                const product = getProductDetails(item.productId);
+                const product = productMap[item.productId] || { name: 'Product', image: '/images/product-fallback.webp' };
                 return (
                   <motion.div 
                     key={item.id}
@@ -277,7 +302,7 @@ export default function DashboardPage() {
             setIsAlertModalOpen(false);
             setEditingAlert(null);
           }}
-          product={getProductDetails(editingAlert.productId)}
+          product={productMap[editingAlert.productId] || { name: 'Product', image: '/images/product-fallback.webp' }}
           existingAlert={editingAlert}
           onAlertUpdated={fetchData}
         />

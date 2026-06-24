@@ -1,7 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const pocketbaseClient = new PocketBase(
-  'https://fashionable-api.onrender.com'
-);
+const pocketbaseUrl = import.meta.env.VITE_POCKETBASE_URL || 'https://fashionable-api.onrender.com';
+const pocketbaseClient = new PocketBase(pocketbaseUrl);
 
 export default pocketbaseClient;

@@ -33,7 +33,10 @@ router.post('/track-click', async (req, res) => {
     res.json({ success: true });
   } catch (error) {
     logger.error('Failed to track click:', error.message);
-    throw new Error(`Failed to track click: ${error.message}`);
+    res.status(500).json({
+      error: 'Failed to track click',
+      message: process.env.NODE_ENV === 'production' ? 'Internal server error' : error.message,
+    });
   }
 });
 
