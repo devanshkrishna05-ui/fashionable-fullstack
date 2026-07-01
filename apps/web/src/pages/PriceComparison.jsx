@@ -8,6 +8,7 @@ import { getAllProducts } from '@/lib/localProducts';
 import { useToast } from '@/components/ui/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import pb from '@/lib/pocketbaseClient';
+import { fetchProductByIdFromPocketBase } from '@/lib/productApi';
 import PriceAlertModal from '@/components/PriceAlertModal.jsx';
 import RestockWaitlistModal from '@/components/RestockWaitlistModal.jsx';
 import ReviewsSection from '@/components/ReviewsSection.jsx';
@@ -47,18 +48,56 @@ export default function PriceComparison() {
 
   const FALLBACK_IMAGE = '/images/product-fallback.webp';
 
- const allProducts = useMemo(() => getAllProducts(mockProducts), []);
+  const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
 
-const product = useMemo(() => {
-  const foundProduct =
-    allProducts.find((p) => String(p?.id) === String(id)) || null;
+  const allProducts = useMemo(() => getAllProducts(mockProducts), []);
 
-  if (!foundProduct) {
-    console.warn(`Product not found for id: ${id}`);
-  }
+  useEffect(() => {
+    let isMounted = true;
 
-  return foundProduct;
-}, [allProducts, id]);
+    const loadProduct = async () => {
+      try {
+        setIsLoading(true);
+        setFetchError(null);
+        const dbProduct = await fetchProductByIdFromPocketBase(id);
+        if (!isMounted) return;
+
+        if (dbProduct) {
+          setProduct(dbProduct);
+        } else {
+          // Fallback to local mock products
+          const fallbackProduct = allProducts.find((p) => String(p?.id) === String(id)) || null;
+          if (fallbackProduct) {
+            setProduct(fallbackProduct);
+          } else {
+            setFetchError('Product not found');
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load product details from PocketBase:', err);
+        if (!isMounted) return;
+        // Fallback to local mock products
+        const fallbackProduct = allProducts.find((p) => String(p?.id) === String(id)) || null;
+        if (fallbackProduct) {
+          setProduct(fallbackProduct);
+        } else {
+          setFetchError('Failed to load product details');
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadProduct();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id, allProducts]);
 
 
   const productId = product?.id || '';
@@ -188,6 +227,17 @@ const product = useMemo(() => {
 
     window.open(affiliateUrl, '_blank', 'noopener,noreferrer');
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="text-center text-gray-400">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#00D9FF] mx-auto mb-4"></div>
+          <p>Loading product details...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (

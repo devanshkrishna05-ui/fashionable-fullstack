@@ -11,8 +11,8 @@ migrate((app) => {
       createRule: null,
       updateRule: null,
       deleteRule: null,
-      listRule: null,
-      viewRule: null,
+      listRule: "",
+      viewRule: "",
       fields: [
         {
           system: false,
@@ -88,11 +88,11 @@ migrate((app) => {
       name: "priceAlerts",
       type: "base",
       system: false,
-      createRule: null,
-      updateRule: null,
-      deleteRule: null,
-      listRule: null,
-      viewRule: null,
+      createRule: "",
+      updateRule: "",
+      deleteRule: "",
+      listRule: "",
+      viewRule: "",
       fields: [
         {
           system: false,
@@ -147,11 +147,11 @@ migrate((app) => {
       name: "restockWaitlist",
       type: "base",
       system: false,
-      createRule: null,
-      updateRule: null,
-      deleteRule: null,
-      listRule: null,
-      viewRule: null,
+      createRule: "",
+      updateRule: "",
+      deleteRule: "",
+      listRule: "",
+      viewRule: "",
       fields: [
         {
           system: false,
@@ -190,11 +190,11 @@ migrate((app) => {
       name: "reviews",
       type: "base",
       system: false,
-      createRule: null,
-      updateRule: null,
-      deleteRule: null,
-      listRule: null,
-      viewRule: null,
+      createRule: "",
+      updateRule: "",
+      deleteRule: "",
+      listRule: "",
+      viewRule: "",
       fields: [
         {
           system: false,
@@ -241,11 +241,11 @@ migrate((app) => {
       name: "clickTracking",
       type: "base",
       system: false,
-      createRule: null,
-      updateRule: null,
-      deleteRule: null,
-      listRule: null,
-      viewRule: null,
+      createRule: "",
+      updateRule: "",
+      deleteRule: "",
+      listRule: "",
+      viewRule: "",
       fields: [
         {
           system: false,
