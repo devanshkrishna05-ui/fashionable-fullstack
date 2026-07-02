@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Send } from 'lucide-react';
+import { Mail, MessageSquare, Send, Loader2, CheckCircle } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import emailjs from '@emailjs/browser';
+
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_3qq7opm';
+const EMAILJS_TEMPLATE_ID = '6k5zmrc';
+const EMAILJS_PUBLIC_KEY = 't-67mhnVBG-LAX9Cm';
 
 export default function ContactPage() {
+  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
 
   const handleChange = (e) => {
@@ -19,10 +28,10 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.message) {
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
         title: "Missing Information",
         description: "Please fill in all fields before submitting.",
@@ -31,36 +40,70 @@ export default function ContactPage() {
       return;
     }
 
-    toast({
-      title: "🚧 Feature Coming Soon!",
-      description: "Contact form submission will be available soon. For now, please email us at contact@fashionableviashop@gmail.com",
-    });
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
 
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setIsSuccess(true);
+      toast({
+        title: "✅ Message Sent!",
+        description: "We've received your message and will reply within 24-48 hours.",
+      });
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({ name: '', email: '', message: '' });
+        setIsSuccess(false);
+      }, 3000);
+
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: "❌ Failed to Send",
+        description: "Something went wrong. Please email us directly at contact@fashionableviashop.com",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] py-12">
 
       <Helmet>
-  <title>Contact Fashionable | Fashion & Beauty Price Comparison Support</title>
-  <meta
-    name="description"
-    content="Contact Fashionable for support, feedback, affiliate inquiries and questions about fashion, makeup and skincare price comparison."
-  />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://your-domain.com/contact" />
-
-  <meta property="og:title" content="Contact Fashionable" />
-  <meta
-    property="og:description"
-    content="Reach out to Fashionable for support, feedback and affiliate-related questions."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-domain.com/contact" />
-  <meta property="og:image" content="https://your-domain.com/images/product-fallback.webp" />
-</Helmet>
+        <title>Contact Fashionable | Fashion &amp; Beauty Price Comparison Support</title>
+        <meta
+          name="description"
+          content="Contact Fashionable for support, feedback, affiliate inquiries and questions about fashion, makeup and skincare price comparison."
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://getfashionable.shop/contact" />
+        <meta property="og:title" content="Contact Fashionable" />
+        <meta
+          property="og:description"
+          content="Reach out to Fashionable for support, feedback and affiliate-related questions."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://getfashionable.shop/contact" />
+      </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -89,12 +132,18 @@ export default function ContactPage() {
                   <h2 className="text-white font-bold text-xl">Email Us</h2>
                 </div>
                 <p className="text-gray-400 mb-2">General Inquiries:</p>
-                <a href="mailto:contact@fashionableviashop@gmail.com" className="text-[#00D9FF] hover:underline">
-                  contact@fashionableviashop@gmail.com
+                <a
+                  href="mailto:contact@fashionableviashop.com"
+                  className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors"
+                >
+                  contact@fashionableviashop.com
                 </a>
                 <p className="text-gray-400 mt-4 mb-2">Support:</p>
-                <a href="mailto:support@fashionableviashop@gmail.com" className="text-[#00D9FF] hover:underline">
-                  support@fashionableviashop@gmail.com
+                <a
+                  href="mailto:support@fashionableviashop.com"
+                  className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors"
+                >
+                  support@fashionableviashop.com
                 </a>
               </div>
 
@@ -112,9 +161,13 @@ export default function ContactPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <form onSubmit={handleSubmit} className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-6">
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-6"
+              >
                 <h2 className="text-white font-bold text-2xl mb-6">Send us a Message</h2>
-                
+
                 <div className="space-y-4">
                   <div>
                     <label htmlFor="name" className="block text-white font-semibold mb-2">
@@ -127,7 +180,8 @@ export default function ContactPage() {
                       autoComplete="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors"
+                      disabled={isSubmitting || isSuccess}
+                      className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors disabled:opacity-50"
                       placeholder="Your name"
                     />
                   </div>
@@ -140,10 +194,11 @@ export default function ContactPage() {
                       type="email"
                       id="email"
                       name="email"
-                        autoComplete="email"
+                      autoComplete="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors"
+                      disabled={isSubmitting || isSuccess}
+                      className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors disabled:opacity-50"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -155,23 +210,42 @@ export default function ContactPage() {
                     <textarea
                       id="message"
                       name="message"
-                       maxLength={1000}
+                      maxLength={1000}
                       value={formData.message}
                       onChange={handleChange}
+                      disabled={isSubmitting || isSuccess}
                       rows="6"
-                      className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors resize-none"
+                      className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D9FF] transition-colors resize-none disabled:opacity-50"
                       placeholder="Tell us what's on your mind..."
                     ></textarea>
+                    <p className="text-gray-600 text-xs mt-1 text-right">
+                      {formData.message.length}/1000
+                    </p>
                   </div>
 
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-[#00D9FF] to-[#FF006E] text-white font-bold py-3 px-6 rounded-lg hover:shadow-[0_0_20px_rgba(0,217,255,0.5)] transition-all duration-300 flex items-center justify-center gap-2"
+                    disabled={isSubmitting || isSuccess}
+                    whileHover={{ scale: isSubmitting || isSuccess ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting || isSuccess ? 1 : 0.98 }}
+                    className="w-full bg-gradient-to-r from-[#00D9FF] to-[#FF006E] text-white font-bold py-3 px-6 rounded-lg hover:shadow-[0_0_20px_rgba(0,217,255,0.5)] transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : isSuccess ? (
+                      <>
+                        <CheckCircle className="w-5 h-5" />
+                        <span>Message Sent!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </motion.button>
                 </div>
               </form>
