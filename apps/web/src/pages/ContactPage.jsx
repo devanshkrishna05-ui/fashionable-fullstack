@@ -88,9 +88,10 @@ export default function ContactPage() {
 
     } catch (error) {
       console.error('EmailJS error:', error);
+      const errorMsg = error?.text || error?.message || JSON.stringify(error) || "Unknown error";
       toast({
         title: "❌ Failed to Send",
-        description: "Something went wrong. Please email us directly at contact@fashionableviashop.com",
+        description: `Error: ${errorMsg}. Please email us directly at fashionableviashop@gmail.com`,
         variant: "destructive"
       });
     } finally {
