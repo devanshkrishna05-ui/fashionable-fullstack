@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Mail, Send, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, Send, Loader2, CheckCircle, Copy, ExternalLink, Inbox } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import emailjs from '@emailjs/browser';
 
@@ -24,6 +24,14 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
+
+  const handleCopyEmail = (email) => {
+    navigator.clipboard.writeText(email);
+    toast({
+      title: "📋 Copied to Clipboard",
+      description: `${email} has been copied to your clipboard.`,
+    });
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -144,20 +152,72 @@ export default function ContactPage() {
                   <Mail className="w-6 h-6 text-[#00D9FF]" />
                   <h2 className="text-white font-bold text-xl">Email Us</h2>
                 </div>
-                <p className="text-gray-400 mb-2">General Inquiries:</p>
-                <a
-                  href="mailto:fashionableviashop@gmail.com"
-                  className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors"
-                >
-                  fashionableviashop@gmail.com
-                </a>
-                <p className="text-gray-400 mt-4 mb-2">Support:</p>
-                <a
-                  href="mailto:fashionableviashop@gmail.com"
-                  className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors"
-                >
-                  fashionableviashop@gmail.com
-                </a>
+                
+                <div className="space-y-6">
+                  {/* General Inquiries */}
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">General Inquiries:</p>
+                    <div className="flex items-center justify-between gap-3 bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-3 py-2">
+                      <a
+                        href="mailto:fashionableviashop@gmail.com"
+                        className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors text-sm font-medium break-all"
+                      >
+                        fashionableviashop@gmail.com
+                      </a>
+                      <div className="flex gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => handleCopyEmail('fashionableviashop@gmail.com')}
+                          title="Copy to clipboard"
+                          className="p-1.5 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-gray-400 hover:text-white border border-[#2a2a2a] rounded-md transition-colors"
+                        >
+                          <Copy className="w-4 h-4" />
+                        </button>
+                        <a
+                          href="https://mail.google.com/mail/?view=cm&fs=1&to=fashionableviashop@gmail.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open in Gmail"
+                          className="p-1.5 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-gray-400 hover:text-white border border-[#2a2a2a] rounded-md transition-colors inline-flex"
+                        >
+                          <Inbox className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Support */}
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">Support:</p>
+                    <div className="flex items-center justify-between gap-3 bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-3 py-2">
+                      <a
+                        href="mailto:fashionableviashop@gmail.com"
+                        className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors text-sm font-medium break-all"
+                      >
+                        fashionableviashop@gmail.com
+                      </a>
+                      <div className="flex gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => handleCopyEmail('fashionableviashop@gmail.com')}
+                          title="Copy to clipboard"
+                          className="p-1.5 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-gray-400 hover:text-white border border-[#2a2a2a] rounded-md transition-colors"
+                        >
+                          <Copy className="w-4 h-4" />
+                        </button>
+                        <a
+                          href="https://mail.google.com/mail/?view=cm&fs=1&to=fashionableviashop@gmail.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open in Gmail"
+                          className="p-1.5 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-gray-400 hover:text-white border border-[#2a2a2a] rounded-md transition-colors inline-flex"
+                        >
+                          <Inbox className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="bg-gradient-to-r from-[#00D9FF]/10 to-[#FF006E]/10 border border-[#00D9FF] rounded-xl p-6">
