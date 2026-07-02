@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration
 const EMAILJS_SERVICE_ID = 'service_3qq7opm';
-const EMAILJS_TEMPLATE_ID = '6k5zmrc';
+const EMAILJS_TEMPLATE_ID = 'template_tlkynu3';
 const EMAILJS_PUBLIC_KEY = 't-67mhnVBG-LAX9Cm';
 
 // Initialize EmailJS
@@ -88,10 +88,9 @@ export default function ContactPage() {
 
     } catch (error) {
       console.error('EmailJS error:', error);
-      const errorMsg = error?.text || error?.message || JSON.stringify(error) || "Unknown error";
       toast({
         title: "❌ Failed to Send",
-        description: `Error: ${errorMsg}. Please email us directly at fashionableviashop@gmail.com`,
+        description: "Something went wrong. Please email us directly at fashionableviashop@gmail.com",
         variant: "destructive"
       });
     } finally {
