@@ -10,6 +10,11 @@ const EMAILJS_SERVICE_ID = 'service_3qq7opm';
 const EMAILJS_TEMPLATE_ID = '6k5zmrc';
 const EMAILJS_PUBLIC_KEY = 't-67mhnVBG-LAX9Cm';
 
+// Initialize EmailJS
+emailjs.init({
+  publicKey: EMAILJS_PUBLIC_KEY,
+});
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -64,7 +69,9 @@ export default function ContactPage() {
           message: formData.message.trim(),
           reply_to: formData.email.trim(),
         },
-        EMAILJS_PUBLIC_KEY
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        }
       );
 
       setIsSuccess(true);
