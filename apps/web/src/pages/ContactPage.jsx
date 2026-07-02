@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Send, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, Send, Loader2, CheckCircle } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import emailjs from '@emailjs/browser';
 
@@ -11,7 +11,6 @@ const EMAILJS_TEMPLATE_ID = '6k5zmrc';
 const EMAILJS_PUBLIC_KEY = 't-67mhnVBG-LAX9Cm';
 
 export default function ContactPage() {
-  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -54,10 +53,17 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      await emailjs.sendForm(
+      await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        formRef.current,
+        {
+          from_name: formData.name.trim(),
+          from_email: formData.email.trim(),
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+          reply_to: formData.email.trim(),
+        },
         EMAILJS_PUBLIC_KEY
       );
 
@@ -133,17 +139,17 @@ export default function ContactPage() {
                 </div>
                 <p className="text-gray-400 mb-2">General Inquiries:</p>
                 <a
-                  href="mailto:contact@fashionableviashop.com"
+                  href="mailto:fashionableviashop@gmail.com"
                   className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors"
                 >
-                  contact@fashionableviashop.com
+                  fashionableviashop@gmail.com
                 </a>
                 <p className="text-gray-400 mt-4 mb-2">Support:</p>
                 <a
-                  href="mailto:support@fashionableviashop.com"
+                  href="mailto:fashionableviashop@gmail.com"
                   className="text-[#00D9FF] hover:underline hover:text-[#00b8d9] transition-colors"
                 >
-                  support@fashionableviashop.com
+                  fashionableviashop@gmail.com
                 </a>
               </div>
 
@@ -162,7 +168,6 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <form
-                ref={formRef}
                 onSubmit={handleSubmit}
                 className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-6"
               >
