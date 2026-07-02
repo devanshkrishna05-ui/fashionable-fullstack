@@ -7,6 +7,8 @@ import ProtectedRoute from '@/components/ProtectedRoute.jsx';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import PageLoader from '@/components/PageLoader.jsx';
+import AnalyticsTracker from '@/components/AnalyticsTracker.jsx';
+
 const HomePage = lazy(() => import('@/pages/HomePage.jsx'));
 const TrendingPage = lazy(() => import('@/pages/TrendingPage.jsx'));
 const PriceComparison = lazy(() => import('@/pages/PriceComparison.jsx'));
@@ -29,6 +31,7 @@ function App() {
       <BrowserRouter>
         <div className="flex flex-col min-h-screen bg-[#0a0a0a]">
           <ScrollToTop />
+          <AnalyticsTracker />
           <Header />
         <main className="flex-grow">
   <Suspense
