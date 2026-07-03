@@ -322,26 +322,45 @@ export default function PriceComparison() {
     name="twitter:image"
     content={displayImage}
   />
-</Helmet>
 
-<script type="application/ld+json">
-  {JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: productName,
-    image: displayImage,
-    description: productDescription,
-    category: productCategory,
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      price: lowestPrice,
-      availability: isOutOfStock
-        ? 'https://schema.org/OutOfStock'
-        : 'https://schema.org/InStock',
-    },
-  })}
-</script>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: productName,
+      image: displayImage,
+      description: productDescription,
+      category: productCategory,
+      offers: sortedRetailers.length > 0 ? {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'INR',
+        lowPrice: lowestPrice,
+        highPrice: Number(sortedRetailers[sortedRetailers.length - 1].currentPrice),
+        offerCount: sortedRetailers.length,
+        offers: sortedRetailers.map((r) => ({
+          '@type': 'Offer',
+          price: Number(r.currentPrice),
+          priceCurrency: 'INR',
+          seller: {
+            '@type': 'Organization',
+            name: r.name,
+          },
+          url: r.affiliateLink,
+          availability: r.outOfStock
+            ? 'https://schema.org/OutOfStock'
+            : 'https://schema.org/InStock',
+        })),
+      } : {
+        '@type': 'Offer',
+        priceCurrency: 'INR',
+        price: lowestPrice,
+        availability: isOutOfStock
+          ? 'https://schema.org/OutOfStock'
+          : 'https://schema.org/InStock',
+      },
+    })}
+  </script>
+</Helmet>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link

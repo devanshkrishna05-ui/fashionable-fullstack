@@ -91,6 +91,47 @@ const featuredProducts = useMemo(() => {
     name="twitter:image"
     content="https://getfashionable.shop/images/product-fallback.webp"
   />
+
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          '@id': 'https://getfashionable.shop/#website',
+          'url': 'https://getfashionable.shop/',
+          'name': 'Fashionable',
+          'description': 'Fashion & Beauty Price Comparison Platform',
+          'potentialAction': [
+            {
+              '@type': 'SearchAction',
+              'target': {
+                '@type': 'EntryPoint',
+                'urlTemplate': 'https://getfashionable.shop/trending?search={search_term_string}'
+              },
+              'query-input': 'required name=search_term_string'
+            }
+          ],
+          'inLanguage': 'en-US'
+        },
+        {
+          '@type': 'Organization',
+          '@id': 'https://getfashionable.shop/#organization',
+          'name': 'Fashionable',
+          'url': 'https://getfashionable.shop/',
+          'logo': {
+            '@type': 'ImageObject',
+            '@id': 'https://getfashionable.shop/#logo',
+            'url': 'https://getfashionable.shop/images/product-fallback.webp',
+            'caption': 'Fashionable'
+          },
+          'image': {
+            '@id': 'https://getfashionable.shop/#logo'
+          }
+        }
+      ]
+    })}
+  </script>
 </Helmet>
 
       {/* Hero Section */}
