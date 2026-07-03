@@ -38,7 +38,7 @@ export default function AboutPage() {
     content="Learn about Fashionable, a Gen Z focused fashion and beauty price comparison platform helping shoppers discover trending products and compare prices across retailers."
   />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://your-domain.com/about" />
+  <link rel="canonical" href="https://getfashionable.shop/about" />
 
   <meta
     property="og:title"
@@ -49,8 +49,8 @@ export default function AboutPage() {
     content="Fashionable helps shoppers discover trending fashion, makeup and skincare products at better prices across multiple retailers."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-domain.com/about" />
-  <meta property="og:image" content="https://your-domain.com/images/product-fallback.webp" />
+  <meta property="og:url" content="https://getfashionable.shop/about" />
+  <meta property="og:image" content="https://getfashionable.shop/images/product-fallback.webp" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About Fashionable" />
@@ -58,7 +58,7 @@ export default function AboutPage() {
     name="twitter:description"
     content="Discover how Fashionable helps Gen Z shoppers compare prices on trending fashion and beauty products."
   />
-  <meta name="twitter:image" content="https://your-domain.com/images/product-fallback.webp" />
+  <meta name="twitter:image" content="https://getfashionable.shop/images/product-fallback.webp" />
 </Helmet>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

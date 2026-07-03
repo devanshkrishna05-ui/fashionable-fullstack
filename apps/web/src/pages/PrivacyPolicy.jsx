@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
 
   <meta name="robots" content="index, follow" />
 
-  <link rel="canonical" href="https://your-domain.com/privacy" />
+  <link rel="canonical" href="https://getfashionable.shop/privacy" />
 
   <meta property="og:title" content="Privacy Policy | Fashionable" />
 
@@ -29,12 +29,12 @@ export default function PrivacyPolicy() {
 
   <meta
     property="og:url"
-    content="https://your-domain.com/privacy"
+    content="https://getfashionable.shop/privacy"
   />
 
   <meta
     property="og:image"
-    content="https://your-domain.com/images/product-fallback.webp"
+    content="https://getfashionable.shop/images/product-fallback.webp"
   />
 </Helmet>
 

@@ -278,7 +278,7 @@ export default function PriceComparison() {
 
   <link
     rel="canonical"
-    href={`https://your-domain.com/product/${productId}`}
+    href={`https://getfashionable.shop/product/${productId}`}
   />
 
   <meta
@@ -295,7 +295,7 @@ export default function PriceComparison() {
 
   <meta
     property="og:url"
-    content={`https://your-domain.com/product/${productId}`}
+    content={`https://getfashionable.shop/product/${productId}`}
   />
 
   <meta

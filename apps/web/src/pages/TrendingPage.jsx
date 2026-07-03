@@ -111,7 +111,7 @@ const handleLoadMore = () => {
     content="Discover trending fashion, makeup and skincare products. Compare prices across retailers, explore viral Gen Z picks and find the best beauty and fashion deals on Fashionable."
   />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://your-domain.com/trending" />
+  <link rel="canonical" href="https://getfashionable.shop/trending" />
 
   <meta property="og:title" content="Trending Fashion, Makeup & Skincare Products | Fashionable" />
   <meta
@@ -119,8 +119,8 @@ const handleLoadMore = () => {
     content="Explore viral fashion, makeup and skincare products with price comparison across multiple retailers."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-domain.com/trending" />
-  <meta property="og:image" content="https://your-domain.com/images/product-fallback.webp" />
+  <meta property="og:url" content="https://getfashionable.shop/trending" />
+  <meta property="og:image" content="https://getfashionable.shop/images/product-fallback.webp" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Trending Fashion, Makeup & Skincare Products | Fashionable" />
@@ -128,7 +128,7 @@ const handleLoadMore = () => {
     name="twitter:description"
     content="Compare trending fashion and beauty products across retailers and discover viral deals."
   />
-  <meta name="twitter:image" content="https://your-domain.com/images/product-fallback.webp" />
+  <meta name="twitter:image" content="https://getfashionable.shop/images/product-fallback.webp" />
 </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

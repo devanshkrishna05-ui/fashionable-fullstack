@@ -74,7 +74,7 @@ export default function FAQPage() {
 
   <meta name="robots" content="index, follow" />
 
-  <link rel="canonical" href="https://your-domain.com/faq" />
+  <link rel="canonical" href="https://getfashionable.shop/faq" />
 
   <meta
     property="og:title"
@@ -90,12 +90,12 @@ export default function FAQPage() {
 
   <meta
     property="og:url"
-    content="https://your-domain.com/faq"
+    content="https://getfashionable.shop/faq"
   />
 
   <meta
     property="og:image"
-    content="https://your-domain.com/images/product-fallback.webp"
+    content="https://getfashionable.shop/images/product-fallback.webp"
   />
 
   <script type="application/ld+json">

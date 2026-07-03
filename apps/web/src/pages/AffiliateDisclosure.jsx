@@ -19,7 +19,7 @@ export default function AffiliateDisclosure() {
 
   <link
     rel="canonical"
-    href="https://your-domain.com/affiliate-disclosure"
+    href="https://getfashionable.shop/affiliate-disclosure"
   />
 
   <meta
@@ -36,12 +36,12 @@ export default function AffiliateDisclosure() {
 
   <meta
     property="og:url"
-    content="https://your-domain.com/affiliate-disclosure"
+    content="https://getfashionable.shop/affiliate-disclosure"
   />
 
   <meta
     property="og:image"
-    content="https://your-domain.com/images/product-fallback.webp"
+    content="https://getfashionable.shop/images/product-fallback.webp"
   />
 </Helmet>
 

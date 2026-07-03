@@ -44,7 +44,7 @@ const featuredProducts = useMemo(() => {
 
   <link
     rel="canonical"
-    href="https://your-domain.com/"
+    href="https://getfashionable.shop/"
   />
 
   <meta
@@ -64,12 +64,12 @@ const featuredProducts = useMemo(() => {
 
   <meta
     property="og:url"
-    content="https://your-domain.com/"
+    content="https://getfashionable.shop/"
   />
 
   <meta
     property="og:image"
-    content="https://your-domain.com/images/product-fallback.webp"
+    content="https://getfashionable.shop/images/product-fallback.webp"
   />
 
   <meta
@@ -89,7 +89,7 @@ const featuredProducts = useMemo(() => {
 
   <meta
     name="twitter:image"
-    content="https://your-domain.com/images/product-fallback.webp"
+    content="https://getfashionable.shop/images/product-fallback.webp"
   />
 </Helmet>
 

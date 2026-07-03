@@ -16,7 +16,7 @@ export default function TermsOfUse() {
 
   <meta name="robots" content="index, follow" />
 
-  <link rel="canonical" href="https://your-domain.com/terms" />
+  <link rel="canonical" href="https://getfashionable.shop/terms" />
 
   <meta property="og:title" content="Terms of Use | Fashionable" />
   <meta
@@ -24,8 +24,8 @@ export default function TermsOfUse() {
     content="Review the terms for using Fashionable's price comparison platform and affiliate shopping links."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-domain.com/terms" />
-  <meta property="og:image" content="https://your-domain.com/images/product-fallback.webp" />
+  <meta property="og:url" content="https://getfashionable.shop/terms" />
+  <meta property="og:image" content="https://getfashionable.shop/images/product-fallback.webp" />
 </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
