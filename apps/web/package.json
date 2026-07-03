@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --host --port 3000",
-    "build": "vite build --outDir dist && node tools/ping-indexnow.cjs",
+    "build": "node tools/generate-sitemap.cjs && vite build --outDir dist && node tools/ping-indexnow.cjs",
     "start": "vite preview --host 0.0.0.0 --port 3000",
     "lint": "eslint src --quiet",
     "lint:warn": "eslint src --quiet"
