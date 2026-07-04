@@ -24,14 +24,11 @@ const EXTRACTION_REGEX = {
 	helmet: /<Helmet[^>]*?>([\s\S]*?)<\/Helmet>/i,
 	helmetTest: /<Helmet[\s\S]*?<\/Helmet>/i,
 	title: /<title[^>]*?>\s*(.*?)\s*<\/title>/i,
-	description: /<meta\s+name=["']description["']\s+content=["'](.*?)["']/i
+	description: /<meta[^>]*?name=["']description["'][^>]*?content="([^"]*)"|<meta[^>]*?name=["']description["'][^>]*?content='([^']*)'|<meta[^>]*?content="([^"]*)"[^>]*?name=["']description["']|<meta[^>]*?content='([^']*)'[^>]*?name=["']description["']/i
 };
 
 function cleanContent(content) {
-	return content
-		.replace(CLEAN_CONTENT_REGEX.comments, '')
-		.replace(CLEAN_CONTENT_REGEX.templateLiterals, '""')
-		.replace(CLEAN_CONTENT_REGEX.strings, '""');
+	return content.replace(CLEAN_CONTENT_REGEX.comments, '');
 }
 
 function cleanText(text) {
@@ -53,30 +50,31 @@ function extractRoutes(appJsxPath) {
 	try {
 		const content = fs.readFileSync(appJsxPath, 'utf8');
 		const routes = new Map();
-		const routeMatches = [...content.matchAll(EXTRACTION_REGEX.route)];
+		const routeMatches = [...content.matchAll(/<Route\s+[\s\S]*?element=\{([\s\S]*?)\}/g)];
 
 		for (const match of routeMatches) {
-			const routeTag = match[0];
-			const pathMatch = routeTag.match(EXTRACTION_REGEX.path);
-			const elementMatch = routeTag.match(EXTRACTION_REGEX.element);
-			const isIndex = routeTag.includes('index');
+			const fullBlock = match[0];
+			const elementContent = match[1];
+			
+			const pathMatch = fullBlock.match(/path=["']([^"']+)["']/);
+			const isIndex = fullBlock.includes('index');
+			let routePath = '/';
 
-			if (elementMatch) {
-				const componentName = elementMatch[1];
-				let routePath;
+			if (!isIndex && pathMatch) {
+				routePath = pathMatch[1].startsWith('/') ? pathMatch[1] : `/${pathMatch[1]}`;
+			}
 
-				if (isIndex) {
-					routePath = '/';
-				} else if (pathMatch) {
-					routePath = pathMatch[1].startsWith('/') ? pathMatch[1] : `/${pathMatch[1]}`;
-				}
+			const tags = [...elementContent.matchAll(/<(\w+)/g)].map(m => m[1]);
+			const componentName = tags.find(tag => tag !== 'ProtectedRoute' && tag !== 'Suspense');
 
+			if (componentName) {
 				routes.set(componentName, routePath);
 			}
 		}
 
 		return routes;
 	} catch (error) {
+		console.error('❌ Failed to parse routes from App.jsx:', error.message);
 		return new Map();
 	}
 }
@@ -100,10 +98,10 @@ function extractHelmetData(content, filePath, routes) {
 	const descMatch = helmetContent.match(EXTRACTION_REGEX.description);
 
 	const title = cleanText(titleMatch?.[1]);
-	const description = cleanText(descMatch?.[1]);
+	const description = cleanText(descMatch?.[1] || descMatch?.[2] || descMatch?.[3] || descMatch?.[4]);
 
 	const fileName = path.basename(filePath, path.extname(filePath));
-	const url = routes.length && routes.has(fileName)
+	const url = routes.size && routes.has(fileName)
 		? routes.get(fileName)
 		: generateFallbackUrl(fileName);
 
@@ -120,12 +118,34 @@ function generateFallbackUrl(fileName) {
 }
 
 function generateLlmsTxt(pages) {
+	const domain = 'https://getfashionable.shop';
 	const sortedPages = pages.sort((a, b) => a.title.localeCompare(b.title));
-	const pageEntries = sortedPages.map(page =>
-		`- [${page.title}](${page.url}): ${page.description}`
-	).join('\n');
+	
+	const corePages = sortedPages.filter(p => !['/privacy', '/affiliate-disclosure', '/terms'].includes(p.url));
+	const resources = sortedPages.filter(p => ['/privacy', '/affiliate-disclosure', '/terms'].includes(p.url));
 
-	return `## Pages\n${pageEntries}`;
+	const coreEntries = corePages.map(page => {
+		const fullUrl = page.url.startsWith('/') ? `${domain}${page.url}` : page.url;
+		return `- [${page.title}](${fullUrl}): ${page.description}`;
+	}).join('\n');
+
+	const resourceEntries = resources.map(page => {
+		const fullUrl = page.url.startsWith('/') ? `${domain}${page.url}` : page.url;
+		return `- [${page.title}](${fullUrl}). ${page.description}`;
+	}).join('\n');
+
+	return `# Fashionable
+
+> Fashion discovery and beauty price comparison platform designed for Gen Z shoppers. Compare prices across Nykaa, Amazon, Tira, Myntra, and more.
+
+## Core Pages
+
+${coreEntries}
+
+## Resources & Policies
+
+${resourceEntries}
+`;
 }
 
 function ensureDirectoryExists(dirPath) {
@@ -173,10 +193,7 @@ function main() {
 
 	ensureDirectoryExists(path.dirname(outputPath));
 	fs.writeFileSync(outputPath, llmsTxtContent, 'utf8');
+	console.log(`✅ Success! Dynamic llms.txt generated at ${outputPath}`);
 }
 
-const isMainModule = import.meta.url === `file://${process.argv[1]}`;
-
-if (isMainModule) {
-	main();
-}
+main();

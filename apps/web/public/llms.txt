@@ -1,0 +1,24 @@
+# Fashionable
+
+> Fashion discovery and beauty price comparison platform designed for Gen Z shoppers. Compare prices across Nykaa, Amazon, Tira, Myntra, and more.
+
+## Core Pages
+
+- [404 - Page Not Found | Fashionable](https://getfashionable.shop/*): The page you are looking for does not exist on Fashionable.
+- [About Fashionable | Fashion & Beauty Price Comparison Platform](https://getfashionable.shop/about): Learn about Fashionable, a Gen Z focused fashion and beauty price comparison platform helping shoppers discover trending products and compare prices across retailers.
+- [Contact Fashionable | Fashion & Beauty Price Comparison Support](https://getfashionable.shop/contact): Contact Fashionable for support, feedback, affiliate inquiries and questions about fashion, makeup and skincare price comparison.
+- [Dashboard | Fashionable](https://getfashionable.shop/dashboard): No description available
+- [FAQ | Fashionable Fashion & Beauty Price Comparison](https://getfashionable.shop/faq): Frequently asked questions about Fashionable, including price comparison, affiliate links, trending products, retailers, and shopping support.
+- [Fashionable - Discover Trending Fashion & Beauty at the Best Prices](https://getfashionable.shop/): Compare prices on trending fashion, makeup and skincare products across multiple retailers. Discover viral Gen Z beauty and fashion deals in one place.
+- [Login | Fashionable](https://getfashionable.shop/login): No description available
+- [Price Comparison | Fashionable`}](https://getfashionable.shop/product/:id): No description available
+- [Reset Password | Fashionable](https://getfashionable.shop/password-reset): No description available
+- [Sign Up | Fashionable](https://getfashionable.shop/signup): No description available
+- [Trending Fashion, Makeup & Skincare Products | Fashionable](https://getfashionable.shop/trending): Discover trending fashion, makeup and skincare products. Compare prices across retailers, explore viral Gen Z picks and find the best beauty and fashion deals on Fashionable.
+- [Visual Search | Fashionable](https://getfashionable.shop/visual-search): Find fashion and beauty products by uploading an image. Visual search powered by AI.
+
+## Resources & Policies
+
+- [Affiliate Disclosure | Fashionable](https://getfashionable.shop/affiliate-disclosure). Read Fashionable's Affiliate Disclosure to understand how we earn commissions through affiliate partnerships and retailer links.
+- [Privacy Policy | Fashionable](https://getfashionable.shop/privacy). Read Fashionable's Privacy Policy to understand how we collect, use, protect and manage your personal information and affiliate tracking data.
+- [Terms of Use | Fashionable](https://getfashionable.shop/terms). Read Fashionable's Terms of Use for using our fashion and beauty price comparison platform, affiliate links, third-party retailer links and shopping information.
