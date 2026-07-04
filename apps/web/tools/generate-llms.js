@@ -145,6 +145,16 @@ ${coreEntries}
 ## Resources & Policies
 
 ${resourceEntries}
+
+## Agentic & API Access
+
+Autonomous AI agents can query our live product database directly in JSON format instead of scraping the UI:
+- **Base Endpoint:** \`https://pocketbase-app-production-964e.up.railway.app/api/collections/products/records\`
+- **Method:** GET
+- **Query Parameters:**
+  - \`perPage\` (number): Limit output items (default 30)
+  - \`filter\` (string): Filter syntax (e.g. \`name ~ "lipstick"\` or \`category = "makeup"\`)
+  - \`sort\` (string): Sort syntax (e.g. \`-created\` or \`price\`)
 `;
 }
 

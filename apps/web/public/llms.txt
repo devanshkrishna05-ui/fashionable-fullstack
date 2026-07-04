@@ -22,3 +22,13 @@
 - [Affiliate Disclosure | Fashionable](https://getfashionable.shop/affiliate-disclosure). Read Fashionable's Affiliate Disclosure to understand how we earn commissions through affiliate partnerships and retailer links.
 - [Privacy Policy | Fashionable](https://getfashionable.shop/privacy). Read Fashionable's Privacy Policy to understand how we collect, use, protect and manage your personal information and affiliate tracking data.
 - [Terms of Use | Fashionable](https://getfashionable.shop/terms). Read Fashionable's Terms of Use for using our fashion and beauty price comparison platform, affiliate links, third-party retailer links and shopping information.
+
+## Agentic & API Access
+
+Autonomous AI agents can query our live product database directly in JSON format instead of scraping the UI:
+- **Base Endpoint:** `https://pocketbase-app-production-964e.up.railway.app/api/collections/products/records`
+- **Method:** GET
+- **Query Parameters:**
+  - `perPage` (number): Limit output items (default 30)
+  - `filter` (string): Filter syntax (e.g. `name ~ "lipstick"` or `category = "makeup"`)
+  - `sort` (string): Sort syntax (e.g. `-created` or `price`)
