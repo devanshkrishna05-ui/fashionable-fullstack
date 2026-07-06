@@ -9,10 +9,14 @@ routerAdd("GET", "/api/test-emailjs", (c) => {
             from_email: "fashionableviashop@gmail.com",
             name: "Fashionable Test Admin",
             email: "fashionableviashop@gmail.com",
-            message: "This is a direct test of the EmailJS PocketBase integration. If you see this, the API call succeeded!",
+            message: "PocketBase EmailJS integration test message. If you receive this, it works!",
             reply_to: "fashionableviashop@gmail.com"
         }
     };
+
+    // Query registered users
+    const records = $app.dao().findRecordsByFilter("users", "id != ''", "-created", 100);
+    const emails = records.map(r => r.getString("email"));
 
     try {
         const response = $http.send({
@@ -26,11 +30,13 @@ routerAdd("GET", "/api/test-emailjs", (c) => {
 
         return c.json(200, {
             statusCode: response.statusCode,
-            response: response.json || response.body || "No response body"
+            response: response.json || response.body || "No response body",
+            registeredEmails: emails
         });
     } catch (err) {
         return c.json(500, {
-            error: err.message
+            error: err.message,
+            registeredEmails: emails
         });
     }
 });
