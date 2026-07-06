@@ -5,6 +5,43 @@ onMailerSend((e) => {
         return e.next();
     }
 
+    const htmlContent = e.message.html || "";
+    const textContent = e.message.text || "";
+    const fullContent = htmlContent + " " + textContent;
+
+    let emailMessage = textContent || htmlContent;
+
+    // Check if this is a password reset or verification email containing a token link
+    const tokenMatch = fullContent.match(/(?:confirm-password-reset|confirm-verification)\/([a-zA-Z0-9\-_.]+)/);
+
+    if (tokenMatch && tokenMatch[1]) {
+        const token = tokenMatch[1];
+        const isVerification = fullContent.includes("confirm-verification");
+        
+        let linkUrl = "";
+        let bodyText = "";
+
+        if (isVerification) {
+            linkUrl = "https://getfashionable.shop/login"; 
+            bodyText = "Please click the link below to verify your email address:";
+        } else {
+            // Password Reset
+            linkUrl = `https://getfashionable.shop/password-reset?token=${token}`;
+            bodyText = "Please click the link below to reset your password for your Fashionable account:";
+        }
+
+        emailMessage = `Hello,
+
+${bodyText}
+
+${linkUrl}
+
+If you did not request this action, you can safely ignore this email.
+
+Thanks,
+Fashionable Team`;
+    }
+
     const payload = {
         service_id: "service_3qq7opm",
         template_id: "template_tlkynu3",
@@ -12,9 +49,9 @@ onMailerSend((e) => {
         template_params: {
             from_name: "Fashionable System",
             from_email: "fashionableviashop@gmail.com",
-            name: "Fashionable Admin",
+            name: "Fashionable User",
             email: e.message.to[0].address,
-            message: e.message.html || e.message.text,
+            message: emailMessage,
             reply_to: "fashionableviashop@gmail.com"
         }
     };
