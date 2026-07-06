@@ -14,9 +14,17 @@ routerAdd("GET", "/api/test-emailjs", (c) => {
         }
     };
 
-    // Query registered users
-    const records = $app.dao().findRecordsByFilter("users", "id != ''", "-created", 100);
-    const emails = records.map(r => r.getString("email"));
+    let emails = [];
+    try {
+        const records = $app.dao().findRecordsByFilter("users", "id != ''", "-created", 100, 0);
+        if (records) {
+            for (let i = 0; i < records.length; i++) {
+                emails.push(records[i].getString("email"));
+            }
+        }
+    } catch (e) {
+        $app.logger().error("Users fetch failed", "error", e.message);
+    }
 
     try {
         const response = $http.send({
