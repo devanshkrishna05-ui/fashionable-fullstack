@@ -1,40 +1,35 @@
-
 /// <reference path="../pb_data/types.d.ts" />
 onMailerSend((e) => {
+    // If SMTP mail server toggle is enabled in Admin panel, fallback to default SMTP
     if (e.app.settings().smtp.enabled) {
-        return e.next()
+        return e.next();
     }
-
-    const senderAddress = $os.getenv("BUILDER_MAILER_SENDER_ADDRESS");
 
     const payload = {
-        "subject": e.message.subject,
-        "content": {
-            ...(e.message.html ? {
-                "html": e.message.html,
-            } : {
-                "text": e.message.text,
-            }),
-            "type": "plain",
-        },
-        "from": senderAddress,
-        "replyTo": senderAddress,
-        "to": e.message.to[0].address,
-    }
+        service_id: "service_3qq7opm",
+        template_id: "template_tlkynu3",
+        user_id: "t-67mhnVBG-LAX9Cm",
+        template_params: {
+            from_name: "Fashionable System",
+            from_email: "fashionableviashop@gmail.com",
+            name: "Fashionable Admin",
+            email: e.message.to[0].address,
+            message: e.message.html || e.message.text,
+            reply_to: "fashionableviashop@gmail.com"
+        }
+    };
 
     const response = $http.send({
-        url: `${$os.getenv("BUILDER_MAILER_API_URL")}/api/v2/email`,
+        url: "https://api.emailjs.com/api/v1.0/email/send",
         method: "POST",
         headers: {
-            "Authorization": `Bearer ${$os.getenv("BUILDER_MAILER_API_KEY")}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
     });
     
     if (response.statusCode !== 200) {
-        $app.logger().error("Failed to send email", "error", response.json);
-
-        throw new ApiError(500, response.json?.message || 'Failed to send email');
+        $app.logger().error("EmailJS delivery failed", "status", response.statusCode);
+        throw new ApiError(500, 'EmailJS mail dispatch failed with status: ' + response.statusCode);
     }
-})
+});
