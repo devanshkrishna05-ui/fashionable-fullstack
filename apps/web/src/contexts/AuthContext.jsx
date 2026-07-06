@@ -75,7 +75,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    const cleanEmail = email?.trim();
+    const cleanEmail = email?.trim()?.toLowerCase();
 
     if (!cleanEmail || !password) {
       throw new Error('Email and password required');
@@ -87,7 +87,7 @@ export function AuthProvider({ children }) {
   };
 
   const signup = async (email, password, passwordConfirm) => {
-    const cleanEmail = email?.trim();
+    const cleanEmail = email?.trim()?.toLowerCase();
 
     if (!cleanEmail || !password || !passwordConfirm) {
       throw new Error('Email, password and confirm password required');
@@ -112,7 +112,7 @@ export function AuthProvider({ children }) {
   };
 
   const resetPassword = async (email) => {
-    const cleanEmail = email?.trim();
+    const cleanEmail = email?.trim()?.toLowerCase();
 
     if (!cleanEmail) {
       throw new Error('Email required');
