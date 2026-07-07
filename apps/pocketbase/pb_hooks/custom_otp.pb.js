@@ -5,9 +5,9 @@
 const activeOtps = {};
 
 routerAdd("POST", "/api/custom/otp-request", (e) => {
-    const data = {};
+    let data;
     try {
-        e.bindBody(data);
+        data = e.requestInfo().data || {};
     } catch (err) {
         return e.json(400, { message: "Invalid request payload: " + err.message });
     }
@@ -77,9 +77,9 @@ Fashionable Team`,
 });
 
 routerAdd("POST", "/api/custom/otp-verify", (e) => {
-    const data = {};
+    let data;
     try {
-        e.bindBody(data);
+        data = e.requestInfo().data || {};
     } catch (err) {
         return e.json(400, { message: "Invalid request payload: " + err.message });
     }
