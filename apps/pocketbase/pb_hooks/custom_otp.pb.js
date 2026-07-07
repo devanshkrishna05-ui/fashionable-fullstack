@@ -9,7 +9,7 @@ routerAdd("POST", "/api/custom/otp-request", (c) => {
     const email = (data.email || "").trim().toLowerCase();
 
     if (!email) {
-        throw new ApiError(400, "Email is required");
+        return c.json(400, { message: "Email is required" });
     }
 
     // 1. Check if user exists in the database
@@ -20,7 +20,7 @@ routerAdd("POST", "/api/custom/otp-request", (c) => {
         try {
             record = $app.findFirstRecordByData("users", "email", email);
         } catch (__) {
-            throw new ApiError(404, "This email address is not registered on getfashionable.shop");
+            return c.json(404, { message: "This email address is not registered on getfashionable.shop" });
         }
     }
 
@@ -64,7 +64,7 @@ Fashionable Team`,
 
     if (response.statusCode !== 200) {
         $app.logger().error("OTP EmailJS dispatch failed", "status", response.statusCode);
-        throw new ApiError(500, "Failed to send OTP email: " + response.body);
+        return c.json(500, { message: "Failed to send OTP email: " + response.body });
     }
 
     return c.json(200, { message: "OTP sent successfully" });
@@ -76,25 +76,25 @@ routerAdd("POST", "/api/custom/otp-verify", (c) => {
     const code = (data.code || "").trim();
 
     if (!email || !code) {
-        throw new ApiError(400, "Email and OTP code are required");
+        return c.json(400, { message: "Email and OTP code are required" });
     }
 
     // 1. Retrieve OTP from memory
     const recordOtp = activeOtps[email];
 
     if (!recordOtp) {
-        throw new ApiError(400, "No OTP request found for this email. Please request a new code.");
+        return c.json(400, { message: "No OTP request found for this email. Please request a new code." });
     }
 
     // 2. Check expiration
     if (Date.now() > recordOtp.expires) {
         delete activeOtps[email];
-        throw new ApiError(400, "OTP has expired. Please request a new one.");
+        return c.json(400, { message: "OTP has expired. Please request a new one." });
     }
 
     // 3. Verify code
     if (recordOtp.code !== code) {
-        throw new ApiError(400, "Invalid OTP code. Please check and try again.");
+        return c.json(400, { message: "Invalid OTP code. Please check and try again." });
     }
 
     // 4. Verification successful, clean up OTP
@@ -108,7 +108,7 @@ routerAdd("POST", "/api/custom/otp-verify", (c) => {
         try {
             record = $app.findFirstRecordByData("users", "email", email);
         } catch (__) {
-            throw new ApiError(404, "User record not found");
+            return c.json(404, { message: "User record not found" });
         }
     }
 
