@@ -2,7 +2,7 @@
 routerAdd("GET", "/api/debug-users", (c) => {
     let emails = [];
     try {
-        const records = $app.dao().findRecordsByFilter("users", "id != ''", "-created", 100, 0);
+        const records = $app.findRecordsByFilter("users", "id != ''", "-created", 100, 0);
         if (records) {
             for (let i = 0; i < records.length; i++) {
                 emails.push({

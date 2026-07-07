@@ -15,9 +15,13 @@ routerAdd("POST", "/api/custom/otp-request", (c) => {
     // 1. Check if user exists in the database
     let record;
     try {
-        record = $app.dao().findFirstRecordByData("users", "email", email);
+        record = $app.findAuthRecordByEmail("users", email);
     } catch (_) {
-        throw new ApiError(404, "This email address is not registered on getfashionable.shop");
+        try {
+            record = $app.findFirstRecordByData("users", "email", email);
+        } catch (__) {
+            throw new ApiError(404, "This email address is not registered on getfashionable.shop");
+        }
     }
 
     // 2. Generate 6-digit OTP
@@ -99,9 +103,13 @@ routerAdd("POST", "/api/custom/otp-verify", (c) => {
     // 5. Find the user record
     let record;
     try {
-        record = $app.dao().findFirstRecordByData("users", "email", email);
+        record = $app.findAuthRecordByEmail("users", email);
     } catch (_) {
-        throw new ApiError(404, "User record not found");
+        try {
+            record = $app.findFirstRecordByData("users", "email", email);
+        } catch (__) {
+            throw new ApiError(404, "User record not found");
+        }
     }
 
     // 6. Generate auth token
