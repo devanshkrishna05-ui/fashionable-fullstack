@@ -11,10 +11,10 @@
 - [FAQ | Fashionable Fashion & Beauty Price Comparison](https://getfashionable.shop/faq): Frequently asked questions about Fashionable, including price comparison, affiliate links, trending products, retailers, and shopping support.
 - [Fashionable - Discover Trending Fashion & Beauty at the Best Prices](https://getfashionable.shop/): Compare prices on trending fashion, makeup and skincare products across multiple retailers. Discover viral Gen Z beauty and fashion deals in one place.
 - [Login | Fashionable](https://getfashionable.shop/login): No description available
+- [OTP Passwordless Login | Fashionable](https://getfashionable.shop/password-reset): No description available
 - [Price Comparison | Fashionable`}](https://getfashionable.shop/product/:id): No description available
 - [Sign Up | Fashionable](https://getfashionable.shop/signup): No description available
 - [Trending Fashion, Makeup & Skincare Products | Fashionable](https://getfashionable.shop/trending): Discover trending fashion, makeup and skincare products. Compare prices across retailers, explore viral Gen Z picks and find the best beauty and fashion deals on Fashionable.
-- [Untitled Page](https://getfashionable.shop/password-reset): No description available
 - [Visual Search | Fashionable](https://getfashionable.shop/visual-search): Find fashion and beauty products by uploading an image. Visual search powered by AI.
 
 ## Resources & Policies
