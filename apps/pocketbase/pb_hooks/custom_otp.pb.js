@@ -4,12 +4,18 @@
 // key: email, value: { code, expires }
 const activeOtps = {};
 
-routerAdd("POST", "/api/custom/otp-request", (c) => {
-    const data = c.requestInfo().body;
+routerAdd("POST", "/api/custom/otp-request", (e) => {
+    const data = {};
+    try {
+        e.bindBody(data);
+    } catch (err) {
+        return e.json(400, { message: "Invalid request payload" });
+    }
+
     const email = (data.email || "").trim().toLowerCase();
 
     if (!email) {
-        return c.json(400, { message: "Email is required" });
+        return e.json(400, { message: "Email is required" });
     }
 
     // 1. Check if user exists in the database
@@ -20,7 +26,7 @@ routerAdd("POST", "/api/custom/otp-request", (c) => {
         try {
             record = $app.findFirstRecordByData("users", "email", email);
         } catch (__) {
-            return c.json(404, { message: "This email address is not registered on getfashionable.shop" });
+            return e.json(404, { message: "This email address is not registered on getfashionable.shop" });
         }
     }
 
@@ -64,37 +70,43 @@ Fashionable Team`,
 
     if (response.statusCode !== 200) {
         $app.logger().error("OTP EmailJS dispatch failed", "status", response.statusCode);
-        return c.json(500, { message: "Failed to send OTP email: " + response.body });
+        return e.json(500, { message: "Failed to send OTP email: " + response.body });
     }
 
-    return c.json(200, { message: "OTP sent successfully" });
+    return e.json(200, { message: "OTP sent successfully" });
 });
 
-routerAdd("POST", "/api/custom/otp-verify", (c) => {
-    const data = c.requestInfo().body;
+routerAdd("POST", "/api/custom/otp-verify", (e) => {
+    const data = {};
+    try {
+        e.bindBody(data);
+    } catch (err) {
+        return e.json(400, { message: "Invalid request payload" });
+    }
+
     const email = (data.email || "").trim().toLowerCase();
     const code = (data.code || "").trim();
 
     if (!email || !code) {
-        return c.json(400, { message: "Email and OTP code are required" });
+        return e.json(400, { message: "Email and OTP code are required" });
     }
 
     // 1. Retrieve OTP from memory
     const recordOtp = activeOtps[email];
 
     if (!recordOtp) {
-        return c.json(400, { message: "No OTP request found for this email. Please request a new code." });
+        return e.json(400, { message: "No OTP request found for this email. Please request a new code." });
     }
 
     // 2. Check expiration
     if (Date.now() > recordOtp.expires) {
         delete activeOtps[email];
-        return c.json(400, { message: "OTP has expired. Please request a new one." });
+        return e.json(400, { message: "OTP has expired. Please request a new one." });
     }
 
     // 3. Verify code
     if (recordOtp.code !== code) {
-        return c.json(400, { message: "Invalid OTP code. Please check and try again." });
+        return e.json(400, { message: "Invalid OTP code. Please check and try again." });
     }
 
     // 4. Verification successful, clean up OTP
@@ -108,14 +120,14 @@ routerAdd("POST", "/api/custom/otp-verify", (c) => {
         try {
             record = $app.findFirstRecordByData("users", "email", email);
         } catch (__) {
-            return c.json(404, { message: "User record not found" });
+            return e.json(404, { message: "User record not found" });
         }
     }
 
     // 6. Generate auth token
     const token = $tokens.recordAuthToken($app, record);
 
-    return c.json(200, {
+    return e.json(200, {
         token: token,
         record: record
     });
