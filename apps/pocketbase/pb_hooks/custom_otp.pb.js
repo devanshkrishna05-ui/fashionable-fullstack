@@ -9,7 +9,7 @@ routerAdd("POST", "/api/custom/otp-request", (e) => {
     try {
         e.bindBody(data);
     } catch (err) {
-        return e.json(400, { message: "Invalid request payload" });
+        return e.json(400, { message: "Invalid request payload: " + err.message });
     }
 
     const email = (data.email || "").trim().toLowerCase();
@@ -81,7 +81,7 @@ routerAdd("POST", "/api/custom/otp-verify", (e) => {
     try {
         e.bindBody(data);
     } catch (err) {
-        return e.json(400, { message: "Invalid request payload" });
+        return e.json(400, { message: "Invalid request payload: " + err.message });
     }
 
     const email = (data.email || "").trim().toLowerCase();

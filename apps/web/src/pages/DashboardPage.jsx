@@ -30,14 +30,12 @@ export default function DashboardPage() {
     try {
       const alertsData = await pb.collection('priceAlerts').getFullList({
         filter: `userId = "${currentUser.id}"`,
-        sort: '-created',
         $autoCancel: false
       });
       setAlerts(alertsData);
 
       const waitlistData = await pb.collection('restockWaitlist').getFullList({
         filter: `userId = "${currentUser.id}"`,
-        sort: '-created',
         $autoCancel: false
       });
       setWaitlist(waitlistData);
