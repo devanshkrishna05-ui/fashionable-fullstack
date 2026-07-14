@@ -7,15 +7,15 @@ import { mockProducts } from '@/data/mockProductData';
 import { getAllProducts } from '@/lib/localProducts';
 
   const HERO_IMAGES = [
-    { url: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a', alt: 'Trendy fashion outfit with denim jacket' },
-    { url: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de', alt: 'Beauty and makeup products' },
-    { url: 'https://images.unsplash.com/photo-1684407261522-48ad66a060e9', alt: 'Stylish accessories and bags' }
+    { url: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a?auto=format&fit=crop&w=800&q=80', alt: 'Trendy fashion outfit with denim jacket' },
+    { url: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de?auto=format&fit=crop&w=800&q=80', alt: 'Beauty and makeup products' },
+    { url: 'https://images.unsplash.com/photo-1684407261522-48ad66a060e9?auto=format&fit=crop&w=800&q=80', alt: 'Stylish accessories and bags' }
   ];
 
   const CATEGORIES = [
-    { name: 'Fashion', icon: '👗', color: 'from-pink-500 to-purple-500', image: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a' },
-    { name: 'Makeup', icon: '💄', color: 'from-cyan-500 to-blue-500', image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de' },
-    { name: 'Skincare', icon: '✨', color: 'from-green-400 to-emerald-500', image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb' }
+    { name: 'Fashion', icon: '👗', color: 'from-pink-500 to-purple-500', image: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Makeup', icon: '💄', color: 'from-cyan-500 to-blue-500', image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Skincare', icon: '✨', color: 'from-green-400 to-emerald-500', image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb?auto=format&fit=crop&w=600&q=80' }
   ];
 
 export default function HomePage() {

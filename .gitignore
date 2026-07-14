@@ -6,3 +6,5 @@ dist
 .vscode
 .DS_Store
 apps/pocketbase/pb_data
+apps/pocketbase/pocketbase.exe
+*.exe

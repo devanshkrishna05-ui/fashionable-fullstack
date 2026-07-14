@@ -1,7 +1,7 @@
 // Trigger Vercel Deploy Hook whenever products are added, updated, or deleted
 // This updates the dynamic sitemap.xml and pings IndexNow/GEO search engines automatically.
 
-function triggerVercelDeploy() {
+globalThis.triggerVercelDeploy = function() {
   const vercelHookUrl = $os.getenv("VERCEL_DEPLOY_HOOK_URL");
 
   if (!vercelHookUrl) {
@@ -26,16 +26,16 @@ function triggerVercelDeploy() {
 }
 
 // 1. Hook for product creation
-onModelAfterCreate((e) => {
-  triggerVercelDeploy();
+onRecordAfterCreateSuccess((e) => {
+  globalThis.triggerVercelDeploy();
 }, "products");
 
 // 2. Hook for product updates
-onModelAfterUpdate((e) => {
-  triggerVercelDeploy();
+onRecordAfterUpdateSuccess((e) => {
+  globalThis.triggerVercelDeploy();
 }, "products");
 
 // 3. Hook for product deletion
-onModelAfterDelete((e) => {
-  triggerVercelDeploy();
+onRecordAfterDeleteSuccess((e) => {
+  globalThis.triggerVercelDeploy();
 }, "products");

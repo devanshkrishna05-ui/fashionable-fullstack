@@ -3,7 +3,7 @@ export const mockProducts = [
     id: '1',
     name: 'Oversized Denim Jacket',
     description: 'Trending vintage-style oversized denim jacket perfect for layering',
-    image: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a',
+    image: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['Viral Reel', 'Best Seller'],
     retailers: [
@@ -16,7 +16,7 @@ export const mockProducts = [
     id: '2',
     name: 'Glossy Lip Tint Set',
     description: 'Viral TikTok lip tint collection with 5 trending shades',
-    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de',
+    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de?auto=format&fit=crop&w=400&q=80',
     category: 'Makeup',
     viralTags: ['Viral Reel'],
     retailers: [
@@ -29,7 +29,7 @@ export const mockProducts = [
     id: '3',
     name: 'Mini Crossbody Bag',
     description: 'Trendy mini bag with chain strap - perfect for nights out',
-    image: 'https://images.unsplash.com/photo-1684407261522-48ad66a060e9',
+    image: 'https://images.unsplash.com/photo-1684407261522-48ad66a060e9?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['New Drop'],
     retailers: [
@@ -42,7 +42,7 @@ export const mockProducts = [
     id: '4',
     name: 'Chunky Platform Sneakers',
     description: 'Y2K inspired platform sneakers - the ultimate Gen-Z staple',
-    image: 'https://images.unsplash.com/photo-1582257857588-4dd1f87a7118',
+    image: 'https://images.unsplash.com/photo-1582257857588-4dd1f87a7118?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['Best Seller', 'Viral Reel'],
     retailers: [
@@ -55,7 +55,7 @@ export const mockProducts = [
     id: '5',
     name: 'Hyaluronic Acid Serum',
     description: 'Viral skincare serum for plump, hydrated skin',
-    image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb',
+    image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb?auto=format&fit=crop&w=400&q=80',
     category: 'Skincare',
     viralTags: ['Viral Reel'],
     retailers: [
@@ -68,7 +68,7 @@ export const mockProducts = [
     id: '6',
     name: 'Retro Sunglasses',
     description: 'Trending oval sunglasses with colored lenses',
-    image: 'https://images.unsplash.com/photo-1511923199659-1c16881689de',
+    image: 'https://images.unsplash.com/photo-1511923199659-1c16881689de?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['New Drop'],
     retailers: [
@@ -81,7 +81,7 @@ export const mockProducts = [
     id: '7',
     name: 'Niacinamide Face Serum',
     description: 'Pore-minimizing serum that went viral on TikTok',
-    image: 'https://images.unsplash.com/photo-1569357480106-2706c6564b7e',
+    image: 'https://images.unsplash.com/photo-1569357480106-2706c6564b7e?auto=format&fit=crop&w=400&q=80',
     category: 'Skincare',
     viralTags: ['Viral Reel', 'Best Seller'],
     retailers: [
@@ -94,7 +94,7 @@ export const mockProducts = [
     id: '8',
     name: 'Satin Scrunchie Set',
     description: '90s comeback - gentle on hair, perfect for every hairstyle',
-    image: 'https://images.unsplash.com/photo-1616281085521-e58f346ee4df',
+    image: 'https://images.unsplash.com/photo-1616281085521-e58f346ee4df?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['Best Seller'],
     retailers: [
@@ -107,7 +107,7 @@ export const mockProducts = [
     id: '9',
     name: 'Cargo Pants',
     description: 'Trending baggy cargo pants with multiple pockets',
-    image: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a',
+    image: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['Viral Reel'],
     retailers: [
@@ -120,7 +120,7 @@ export const mockProducts = [
     id: '10',
     name: 'Cream Blush Stick',
     description: 'Dewy cream blush for that natural flushed look',
-    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de',
+    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de?auto=format&fit=crop&w=400&q=80',
     category: 'Makeup',
     viralTags: ['New Drop', 'Viral Reel'],
     retailers: [
@@ -133,7 +133,7 @@ export const mockProducts = [
     id: '11',
     name: 'Vitamin C Brightening Serum',
     description: 'Glow-boosting serum for radiant, even-toned skin',
-    image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb',
+    image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb?auto=format&fit=crop&w=400&q=80',
     category: 'Skincare',
     viralTags: ['Best Seller'],
     retailers: [
@@ -146,7 +146,7 @@ export const mockProducts = [
     id: '12',
     name: 'Cropped Puffer Jacket',
     description: 'Trending cropped puffer in bold colors',
-    image: 'https://images.unsplash.com/photo-1582257857588-4dd1f87a7118',
+    image: 'https://images.unsplash.com/photo-1582257857588-4dd1f87a7118?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['New Drop'],
     retailers: [
@@ -159,7 +159,7 @@ export const mockProducts = [
     id: '13',
     name: 'Waterproof Mascara',
     description: 'Viral lengthening mascara that actually stays put',
-    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de',
+    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de?auto=format&fit=crop&w=400&q=80',
     category: 'Makeup',
     viralTags: ['Viral Reel', 'Best Seller'],
     retailers: [
@@ -172,7 +172,7 @@ export const mockProducts = [
     id: '14',
     name: 'Retinol Night Cream',
     description: 'Anti-aging night cream for smooth, youthful skin',
-    image: 'https://images.unsplash.com/photo-1569357480106-2706c6564b7e',
+    image: 'https://images.unsplash.com/photo-1569357480106-2706c6564b7e?auto=format&fit=crop&w=400&q=80',
     category: 'Skincare',
     viralTags: ['Best Seller'],
     retailers: [
@@ -185,7 +185,7 @@ export const mockProducts = [
     id: '15',
     name: 'Bucket Hat',
     description: 'Y2K revival - the bucket hat everyone is wearing',
-    image: 'https://images.unsplash.com/photo-1511923199659-1c16881689de',
+    image: 'https://images.unsplash.com/photo-1511923199659-1c16881689de?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['Viral Reel'],
     retailers: [
@@ -198,7 +198,7 @@ export const mockProducts = [
     id: '16',
     name: 'Liquid Eyeliner Pen',
     description: 'Precision tip eyeliner for perfect winged liner every time',
-    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de',
+    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de?auto=format&fit=crop&w=400&q=80',
     category: 'Makeup',
     viralTags: ['Best Seller'],
     retailers: [
@@ -211,7 +211,7 @@ export const mockProducts = [
     id: '17',
     name: 'Clay Face Mask',
     description: 'Detoxifying clay mask for clear, glowing skin',
-    image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb',
+    image: 'https://images.unsplash.com/photo-1619853650725-25296cc83ddb?auto=format&fit=crop&w=400&q=80',
     category: 'Skincare',
     viralTags: ['Viral Reel'],
     retailers: [
@@ -224,7 +224,7 @@ export const mockProducts = [
     id: '18',
     name: 'Wide Leg Jeans',
     description: 'Trending high-waisted wide leg jeans for that effortless look',
-    image: 'https://images.unsplash.com/photo-1582257857588-4dd1f87a7118',
+    image: 'https://images.unsplash.com/photo-1582257857588-4dd1f87a7118?auto=format&fit=crop&w=400&q=80',
     category: 'Fashion',
     viralTags: ['New Drop', 'Best Seller'],
     retailers: [
@@ -237,7 +237,7 @@ export const mockProducts = [
     id: '19',
     name: 'Highlighter Palette',
     description: 'Shimmery highlighter palette for that glow-up',
-    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de',
+    image: 'https://images.unsplash.com/photo-1608979002523-9d5c42b613de?auto=format&fit=crop&w=400&q=80',
     category: 'Makeup',
     viralTags: ['Viral Reel'],
     retailers: [
@@ -250,7 +250,7 @@ export const mockProducts = [
     id: '20',
     name: 'Sunscreen SPF 50',
     description: 'Lightweight daily sunscreen that doesn\'t leave white cast',
-    image: 'https://images.unsplash.com/photo-1569357480106-2706c6564b7e',
+    image: 'https://images.unsplash.com/photo-1569357480106-2706c6564b7e?auto=format&fit=crop&w=400&q=80',
     category: 'Skincare',
     viralTags: ['Best Seller', 'Viral Reel'],
     retailers: [

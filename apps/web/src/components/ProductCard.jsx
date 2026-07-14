@@ -218,6 +218,8 @@ export default function ProductCard({ product }) {
                 alt={`${productName} product image`}
                 loading="lazy"
                 decoding="async"
+                width="400"
+                height="500"
                 onLoad={() => setImageLoaded(true)}
                 onError={(e) => {
                   const attemptedSrc = e.currentTarget.currentSrc || e.currentTarget.src;
@@ -329,30 +331,30 @@ export default function ProductCard({ product }) {
         </div>
       )}
 
-      <div className="p-4 flex flex-col flex-grow">
+      <div className="p-3 sm:p-4 flex flex-col flex-grow">
         {productId ? (
           <Link to={productLink}>
-            <h3 className="text-white font-bold text-lg mb-2 hover:text-[#00D9FF] transition-colors line-clamp-2 min-h-[3.5rem]">
+            <h3 className="text-white font-bold text-xs sm:text-base md:text-lg mb-1 sm:mb-2 hover:text-[#00D9FF] transition-colors line-clamp-2 min-h-[2.5rem] sm:min-h-[3.5rem]">
               {productName}
             </h3>
           </Link>
         ) : (
-          <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 min-h-[3.5rem]">
+          <h3 className="text-white font-bold text-xs sm:text-base md:text-lg mb-1 sm:mb-2 line-clamp-2 min-h-[2.5rem] sm:min-h-[3.5rem]">
             {productName}
           </h3>
         )}
 
-        <p className="text-gray-400 text-sm mb-3 line-clamp-2 flex-grow">
+        <p className="hidden sm:block text-gray-400 text-sm mb-3 line-clamp-2 flex-grow">
           {productDescription}
         </p>
 
         {hasValidRetailers ? (
           <>
-            <div className="flex items-baseline gap-2 mb-3">
-              <span className="text-[#00D9FF] font-bold text-2xl">
+            <div className="flex flex-wrap items-baseline gap-1 sm:gap-2 mb-2 sm:mb-3">
+              <span className="text-[#00D9FF] font-bold text-base sm:text-xl md:text-2xl">
                 {formatINR(lowestPrice)}
               </span>
-              <span className="text-gray-500 line-through text-sm">
+              <span className="text-gray-500 line-through text-[10px] sm:text-sm">
                 {formatINR(
                   Number.isFinite(Number(lowestRetailer?.originalPrice))
                     ? Number(lowestRetailer.originalPrice)
@@ -361,18 +363,18 @@ export default function ProductCard({ product }) {
               </span>
             </div>
 
-            <div className="flex items-center gap-2 mb-4">
-              <span className="bg-[#00D9FF] text-black text-xs font-bold px-2 py-1 rounded">
+            <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-3 sm:mb-4">
+              <span className="bg-[#00D9FF] text-black text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
                 Lowest Price
               </span>
-              <span className="text-gray-400 text-xs">
+              <span className="text-gray-400 text-[10px] sm:text-xs">
                 at {lowestRetailer?.name?.trim() || 'Retailer'}
               </span>
             </div>
           </>
         ) : (
           <div className="mb-4">
-            <span className="text-gray-500 text-sm">Price currently unavailable</span>
+            <span className="text-gray-500 text-xs sm:text-sm">Price currently unavailable</span>
           </div>
         )}
 
@@ -380,7 +382,7 @@ export default function ProductCard({ product }) {
           {isOutOfStock ? (
             <button
               onClick={() => setIsWaitlistModalOpen(true)}
-              className="w-full bg-[#2a2a2a] border border-[#FF006E] text-[#FF006E] hover:bg-[#FF006E] hover:text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full bg-[#2a2a2a] border border-[#FF006E] text-[#FF006E] hover:bg-[#FF006E] hover:text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm"
             >
               <Mail className="w-4 h-4" />
               <span>Notify When Available</span>
@@ -391,7 +393,7 @@ export default function ProductCard({ product }) {
                 onClick={() => handleBuyClick(lowestRetailer)}
                 disabled={!hasPurchasableRetailer}
                 aria-label={`Buy ${productName} on ${lowestRetailer?.name || 'retailer'}`}
-                className="w-full bg-gradient-to-r from-[#FF006E] to-[#00D9FF] hover:from-[#00D9FF] hover:to-[#FF006E] text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-[#FF006E] to-[#00D9FF] hover:from-[#00D9FF] hover:to-[#FF006E] text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 group disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm"
               >
                 <span>Buy on {lowestRetailer?.name || 'Retailer'}</span>
                 <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -402,12 +404,12 @@ export default function ProductCard({ product }) {
                   <Link
                     to={productLink}
                     aria-label={`Compare prices for ${productName}`}
-                    className="flex-1 bg-[#2a2a2a] hover:bg-[#3a3a3a] text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-center border border-[#00D9FF] text-sm flex items-center justify-center"
+                    className="flex-1 bg-[#2a2a2a] hover:bg-[#3a3a3a] text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-300 text-center border border-[#00D9FF] text-xs sm:text-sm flex items-center justify-center"
                   >
                     Compare
                   </Link>
                 ) : (
-                  <div className="flex-1 bg-[#2a2a2a] text-gray-500 font-semibold py-2 px-4 rounded-lg text-center border border-[#2a2a2a] text-sm flex items-center justify-center">
+                  <div className="flex-1 bg-[#2a2a2a] text-gray-500 font-semibold py-2 px-3 sm:px-4 rounded-lg text-center border border-[#2a2a2a] text-xs sm:text-sm flex items-center justify-center">
                     Compare
                   </div>
                 )}
