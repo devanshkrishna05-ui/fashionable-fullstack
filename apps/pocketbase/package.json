@@ -1,7 +1,8 @@
 {
   "name": "pocketbase-app",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Fashionable price comparator pocketbase backend",
   "private": true,
   "scripts": {
     "dev": "pocketbase serve --http=0.0.0.0:8090 --encryptionEnv=PB_ENCRYPTION_KEY --hooksWatch=false",
