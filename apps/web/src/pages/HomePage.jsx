@@ -1,10 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { TrendingUp, Sparkles, ShoppingBag, ArrowRight } from 'lucide-react';
 import { mockProducts } from '@/data/mockProductData';
 import { getAllProducts } from '@/lib/localProducts';
+import { fetchProductsFromPocketBase } from '@/lib/productApi';
+import ProductCard from '@/components/ProductCard.jsx';
 
   const HERO_IMAGES = [
     { url: 'https://images.unsplash.com/photo-1583932387991-48b0308efc9a?auto=format&fit=crop&w=800&q=80', alt: 'Trendy fashion outfit with denim jacket' },
@@ -19,10 +21,32 @@ import { getAllProducts } from '@/lib/localProducts';
   ];
 
 export default function HomePage() {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-const featuredProducts = useMemo(() => {
-  return getAllProducts(mockProducts).slice(0, 8);
-}, []);
+  useEffect(() => {
+    let isMounted = true;
+    const loadProducts = async () => {
+      try {
+        const records = await fetchProductsFromPocketBase();
+        if (!isMounted) return;
+        setProducts(Array.isArray(records) && records.length > 0 ? records : getAllProducts(mockProducts));
+      } catch (error) {
+        console.error('Failed to load products for homepage:', error);
+        if (isMounted) setProducts(getAllProducts(mockProducts));
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    };
+    loadProducts();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const featuredProducts = useMemo(() => {
+    return products.slice(0, 8);
+  }, [products]);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -292,7 +316,17 @@ const featuredProducts = useMemo(() => {
             <p className="text-gray-400 text-lg">The most viral products everyone's buying</p>
           </motion.div>
 
-       
+          {isLoading ? (
+            <p className="text-gray-400 text-center py-10">Loading products...</p>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 mb-12">
+              {featuredProducts.map((product) => (
+                <div key={product.id || product.name}>
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+          )}
 
           <motion.div
             initial={{ opacity: 0 }}
