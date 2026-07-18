@@ -45,8 +45,12 @@ function App() {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/privacy_policy" element={<PrivacyPolicy />} />
       <Route path="/affiliate-disclosure" element={<AffiliateDisclosure />} />
       <Route path="/terms" element={<TermsOfUse />} />
+      <Route path="/terms-of-use" element={<TermsOfUse />} />
+      <Route path="/terms_of_use" element={<TermsOfUse />} />
       <Route path="/faq" element={<FAQPage />} />
       <Route
   path="/admin/products"

@@ -13,15 +13,15 @@
 - [Login | Fashionable](https://getfashionable.shop/login): No description available
 - [OTP Passwordless Login | Fashionable](https://getfashionable.shop/password-reset): No description available
 - [Price Comparison | Fashionable`}](https://getfashionable.shop/product/:id): No description available
+- [Privacy Policy | Fashionable](https://getfashionable.shop/privacy_policy): Read Fashionable's Privacy Policy to understand how we collect, use, protect and manage your personal information and affiliate tracking data.
 - [Sign Up | Fashionable](https://getfashionable.shop/signup): No description available
+- [Terms of Use | Fashionable](https://getfashionable.shop/terms_of_use): Read Fashionable's Terms of Use for using our fashion and beauty price comparison platform, affiliate links, third-party retailer links and shopping information.
 - [Trending Fashion, Makeup & Skincare Products | Fashionable](https://getfashionable.shop/trending): Discover trending fashion, makeup and skincare products. Compare prices across retailers, explore viral Gen Z picks and find the best beauty and fashion deals on Fashionable.
 - [Visual Search | Fashionable](https://getfashionable.shop/visual-search): Find fashion and beauty products by uploading an image. Visual search powered by AI.
 
 ## Resources & Policies
 
 - [Affiliate Disclosure | Fashionable](https://getfashionable.shop/affiliate-disclosure). Read Fashionable's Affiliate Disclosure to understand how we earn commissions through affiliate partnerships and retailer links.
-- [Privacy Policy | Fashionable](https://getfashionable.shop/privacy). Read Fashionable's Privacy Policy to understand how we collect, use, protect and manage your personal information and affiliate tracking data.
-- [Terms of Use | Fashionable](https://getfashionable.shop/terms). Read Fashionable's Terms of Use for using our fashion and beauty price comparison platform, affiliate links, third-party retailer links and shopping information.
 
 ## Agentic & API Access
 
