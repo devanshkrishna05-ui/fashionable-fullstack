@@ -1,8 +1,16 @@
-// Automatically generated mock product database with 150 items
-// Categories: Fashion (50), Makeup (50), Skincare (50)
-// Generated at: 2026-07-20T09:45:01.340Z
+/// <reference path="../pb_data/types.d.ts" />
+migrate((app) => {
+  const collection = app.findCollectionByNameOrId("products");
 
-export const mockProducts = [
+  console.log(">> Clearing old products from products table...");
+  try {
+    app.db().newQuery("DELETE FROM products").execute();
+  } catch (e) {
+    console.warn("Warning: Could not clear products table:", e.message);
+  }
+
+  console.log(">> Seeding 150 real trending products into PocketBase...");
+  const products = [
   {
     "id": "FSH-001",
     "name": "Zara Oversized Trench Coat",
@@ -7204,3 +7212,24 @@ export const mockProducts = [
     "updated": "2026-07-20T09:45:01.340Z"
   }
 ];
+
+  for (const item of products) {
+    try {
+      const record = new Record(collection);
+      record.set("name", item.name);
+      record.set("description", item.description);
+      record.set("image", item.image);
+      record.set("images", JSON.stringify(item.images));
+      record.set("category", item.category);
+      record.set("viralTags", JSON.stringify(item.viralTags));
+      record.set("retailers", JSON.stringify(item.retailers));
+      app.save(record);
+    } catch (e) {
+      console.error("❌ Failed to seed product:", item.name, e.message);
+    }
+  }
+
+  console.log(">> Successfully seeded " + products.length + " products.");
+}, (app) => {
+  // Rollback logic
+});
