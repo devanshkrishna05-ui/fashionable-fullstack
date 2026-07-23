@@ -2,8 +2,8 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel)](https://fashionable-fullstack-web.vercel.app)
 [![Website](https://img.shields.io/badge/Official%20Site-getfashionable.shop-FF4081?style=for-the-badge&logo=google-chrome)](https://getfashionable.shop)
-[![Tech Stack](https://img.shields.io/badge/Stack-Next.js%20%7C%20PocketBase%20%7C%20Railway-007ACC?style=for-the-badge)](https://github.com/devanshkrishna05-ui/fashionable-fullstack)
-[![Growth Engine](https://img.shields.io/badge/Growth-Meta%20Ads%20%7C%20GA4%20%7C%20SEO-FF6F00?style=for-the-badge)]()
+[![Growth Engine](https://img.shields.io/badge/Growth-Meta%20Ads%20%7C%20GA4%20%7C%20SEO-FF6F00?style=for-the-badge)](#-growth-marketing--data-analytics-engine)
+[![Tech Stack](https://img.shields.io/badge/Stack-Next.js%20%7C%20PocketBase%20%7C%20Railway-007ACC?style=for-the-badge)](#%EF%B8%8F-architecture--tech-stack)
 
 > **Fashionable** is a full-stack e-commerce price comparison platform designed to eliminate overpaying across major fashion platforms. Built with an integrated data-driven growth marketing, analytics, and performance acquisition engine.
 
