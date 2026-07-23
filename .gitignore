@@ -8,3 +8,5 @@ dist
 apps/pocketbase/pb_data
 apps/pocketbase/pocketbase.exe
 *.exe
+*.tar.gz
+desktop.ini

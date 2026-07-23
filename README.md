@@ -2,16 +2,21 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=for-the-badge&logo=vercel)](https://fashionable-fullstack-web.vercel.app)
 [![Website](https://img.shields.io/badge/Official%20Site-getfashionable.shop-FF4081?style=for-the-badge&logo=google-chrome)](https://getfashionable.shop)
-[![Growth Engine](https://img.shields.io/badge/Growth-Meta%20Ads%20%7C%20GA4%20%7C%20SEO-FF6F00?style=for-the-badge)](#-growth-marketing--data-analytics-engine)
-[![Tech Stack](https://img.shields.io/badge/Stack-Next.js%20%7C%20PocketBase%20%7C%20Railway-007ACC?style=for-the-badge)](#%EF%B8%8F-architecture--tech-stack)
+[![Growth Blueprint](https://img.shields.io/badge/Strategy-Growth%20%26%20Ads%20Blueprint-FF6F00?style=for-the-badge)](marketing_strategy_center.md)
+[![Tech Stack](https://img.shields.io/badge/Stack-Next.js%20%7C%20PocketBase%20%7C%20Railway-007ACC?style=for-the-badge)](#-architecture--tech-stack)
 
-> **Fashionable** is a full-stack e-commerce price comparison platform designed to eliminate overpaying across major fashion platforms. Built with an integrated data-driven growth marketing, analytics, and performance acquisition engine.
+> **Fashionable** is a full-stack e-commerce price comparison platform engineered to eliminate overpaying across major fashion aggregators in India. Built with a data-driven growth marketing, analytics, and performance acquisition engine.
+
+---
+
+## 📄 Growth & Marketing Strategy Blueprint
+> 💡 **Executive Documentation**: Detailed campaign structures, CAC/ROAS targets, and organic acquisition funnels are documented in the [**Marketing Strategy Center**](marketing_strategy_center.md).
 
 ---
 
 ## 🌟 Key Product Features
 
-- 🔍 **Real-Time Price Comparison**: Instantly compare fashion product prices across top Indian e-commerce aggregators.
+- 🔍 **Real-Time Price Comparison**: Instantly compare fashion product prices across top Indian e-commerce platforms.
 - 🔔 **Smart Price Drop Alerts**: Passwordless OTP authentication for instant email price reduction notifications.
 - ⚡ **Automated Search Index**: High-speed catalog search and indexing engine.
 - 📱 **Mobile-First Responsive UX**: High conversion rate (CRO) visual interface.
@@ -52,6 +57,7 @@ Engineered with a data-first approach for customer acquisition, attribution, and
 
 - 🌐 **Web Application**: [fashionable-fullstack-web.vercel.app](https://fashionable-fullstack-web.vercel.app)
 - 🛍️ **Official Domain**: [getfashionable.shop](https://getfashionable.shop)
+- 📋 **Marketing Documentation**: [marketing_strategy_center.md](marketing_strategy_center.md)
 
 ---
 *Created & Maintained by [Devansh Krishna](https://github.com/devanshkrishna05-ui)*
