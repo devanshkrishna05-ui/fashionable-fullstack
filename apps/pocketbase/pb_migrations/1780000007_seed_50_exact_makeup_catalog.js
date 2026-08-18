@@ -1,4 +1,9 @@
-export const mockProducts = [
+/// <reference path="../pb_data/types.d.ts" />
+migrate((app) => {
+  const collection = app.findCollectionByNameOrId("products");
+
+  console.log(">> Seeding 50 Makeup catalog products into PocketBase...");
+  const products = [
   {
     "id": "MKP-001",
     "name": "Lakme Absolute Blur Perfect Makeup Primer",
@@ -1811,3 +1816,25 @@ export const mockProducts = [
     "updated": "2026-08-18T18:00:00.000Z"
   }
 ];
+
+  for (const item of products) {
+    try {
+      const record = new Record(collection);
+      record.set("id", item.id);
+      record.set("name", item.name);
+      record.set("description", item.description);
+      record.set("image", item.image);
+      record.set("images", JSON.stringify(item.images));
+      record.set("category", item.category);
+      record.set("viralTags", JSON.stringify(item.viralTags));
+      record.set("retailers", JSON.stringify(item.retailers));
+      app.save(record);
+    } catch (e) {
+      console.warn("Notice: Record may already exist or error seeding product:", item.name, e.message);
+    }
+  }
+
+  console.log(">> Successfully processed 50 Makeup products in PocketBase.");
+}, (app) => {
+  // Rollback logic
+});
