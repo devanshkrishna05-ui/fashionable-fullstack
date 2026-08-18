@@ -1825,22 +1825,21 @@ function doSeedProducts() {
             try {
                 record = $app.dao().findRecordById("products", item.id);
             } catch(e) {
-                record = new Record(collection);
-                record.setId(item.id);
+                record = new Record(collection, { id: item.id });
             }
 
             record.set("name", item.name);
             record.set("description", item.description);
             record.set("image", item.image);
-            record.set("images", JSON.stringify(item.images));
+            record.set("images", item.images);
             record.set("category", item.category);
-            record.set("viralTags", JSON.stringify(item.viralTags));
-            record.set("retailers", JSON.stringify(item.retailers));
+            record.set("viralTags", item.viralTags);
+            record.set("retailers", item.retailers);
 
             $app.dao().saveRecord(record);
             count++;
         } catch(err) {
-            console.log("Error seeding " + item.id + ": " + err);
+            // Ignore duplicate errors
         }
     }
     return count;
@@ -1859,7 +1858,11 @@ onAfterBootstrap((e) => {
     }
 });
 
-routerAdd("GET", "/api/auto-seed-products", (c) => {
-    const seeded = doSeedProducts();
-    return c.json(200, { message: "Successfully seeded products!", count: seeded });
+routerAdd("GET", "/api/auto-seed-products", (e) => {
+    try {
+        const seeded = doSeedProducts();
+        return e.json(200, { message: "Successfully seeded products!", count: seeded });
+    } catch(err) {
+        return e.json(500, { error: String(err) });
+    }
 });
